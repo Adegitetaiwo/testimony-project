@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{Post.title}} | Apostolic Testimony</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rangeslider.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+  </head>
+  <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"
+      nonce="CobHmtfI"></script>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"
+      nonce="IAAFkNjC"></script>
+    
+      <!--Facebook Share button -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"
+      nonce="m1v1AxhO"></script>
+  
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+    <header class="site-navbar py-2 bg-white" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+      
+          <div class="col-11 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="{% url 'index' %}" class="text-black h2 mb-0"
+                style="font-family:arial rounded mt; font-size: 16px;">Apostolic Testimony</a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+      
+              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li class="active"><a href="{% url 'index' %}"><span>Home</span></a></li>
+                <li><a href="{% url 'about' %}"><span>About</span></a></li>
+                <li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
+                <li><a href="{% url 'create_post' %}"><span>Add testimony +</span></a></li>
+                <li class="has-children">
+                  <a>
+                    <span><img {% if request.user.publicuser.profile_img %} src="{{request.user.publicuser.profile_img.url}}" {% else %}
+                                src="{% static 'images/avatar.png' %}"{% endif %} alt="Image"
+                        style="width: 50px;border: 2px solid #7971ea; border-radius: 50%;"></span></a>
+                  <ul class="dropdown">
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'dashboad' %}">User Profile</a></li>
+                    <li><a href="{% url 'sigout' %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+                    {% endif %}
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'signUp' %}">Sign Up</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+      
+      
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#"
+              class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a>
+          </div>
+      
+        </div>
+      
+      </div>
+      <hr style="border: 1px solid #7971ea;">
+    </header>
+
+  
+
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            
+            <div class="mb-5 border-bottom pb-5">
+              <h2 style="text-align: center; margin-bottom: 25px;">{{Post.title}}</h2>
+              <div class="fb-like" data-href="{{pageLink}}" data-width="" data-layout="box_count"
+                data-action="like" data-size="small" data-share="true"></div>
+              <!-- <img style="width: 100%;" src="{{Post.photo.url}}" alt="Image" class="img-fluid mb-4"> -->
+              <div class="container">
+              <div class="row mb-5 ml-2">
+                {{Post.body | safe}}
+              </div>
+              </div>
+
+             
+              <div class="row">
+                <div class="col-md-6">
+                  <ul style="list-style: none; display: inline-flex;">
+                    <li>
+                      {% if Post.author_img %}
+                      <img src="{{Post.author_img}}" alt="Image"
+                        style="width: 70px;border: 2px solid #7971ea; border-radius: 50%; height: 65px;">
+                      {% else %}
+                      <img src="{% static 'images/avatar.png' %}" alt="Image"
+                      style="width: 70px;border: 2px solid #7971ea; border-radius: 50%; height: 65px;">
+                      {% endif %}
+                      
+                    </li>
+                    <li style="margin-left: 20px;margin-top: 20px; font-weight: bold;">
+                      {{Post.author}}
+                    </li>
+                    <li style="margin-left: 20px;margin-top: 20px; font-weight: bold;">
+                      <span class="icon-visibility"> <span></span></span>
+                    </li>
+                </ul>
+              </div>
+              <!--Social media share link-->
+              <div class="col-md-6 mt-4" style="float: right;">
+                <span style="font-weight: bold;">share Links</span><br>
+                <ul style="list-style: none; display: inline-flex;">
+                  <li><div class="fb-share-button" data-href="{{pageLink}}" data-layout="button_count"
+                    data-size="small"><a target="_blank"
+                      href="https://www.facebook.com/sharer/sharer.php?u={{pageLink | urlencode}}&amp;src=sdkpreparse"
+                      class="fb-xfbml-parse-ignore">Share</a></div>
+                  </li>
+                  <li class="ml-4">
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!--hidden text-->
+            <p id="pageLink" style="display: none;">{{pageLink}}</p>
+            <p id="postId" style="display: none;">{{Post.id}}</p>
+            <hr class="mt-7" style="border: 1px solid #7971ea;">
+            <!-- comment section -->
+            <section name='comment-disclaimer'>
+              <div class="card alert alert-warning">
+                <p>christaintestimony uses a third party commenting system which help us to track and manage comments made on every page</p>
+              </div>
+            </section>
+            <section comment-section>
+              <!-- Facebook comment plugin
+              <div class="fb-comments" data-href="{{pageLink}}" data-numposts="5" data-width=""></div> -->
+              <!--Discus comment plugin -->
+              <div id="disqus_thread"></div>
+              <script>
+
+                /**
+                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                
+                var disqus_config = function () {
+                this.page.url = document.getElementById('pageLink').textContent;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = document.getElementById('postId').textContent; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                
+                (function () { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://christaintestimony-2.disqus.com/embed.js'; //adegiteadekunle24@gmail.com
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+                  Disqus.</a></noscript>
+            </section>
+
+            <h2 class="mb-5 text-primary">More Testimonies</h2>
+          
+            {% for all_post in all %}
+            <div class="d-block d-md-flex listing-horizontal col-md-7">
+            
+              <span class="badge badge-pill badge-secondary ml-4 mt-3"
+                style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;">
+                {{all_post.category}}
+              </span>
+            
+              <div class="lh-content">
+                <h3><a href="{% url 'index' %}detailed/{{all_post.id}}/{{all_post.slug}}/">{{all_post.title}}</a></h3>
+                <p><span style="font-weight: bold;">{{all_post.author}}</span> <span>On {{all_post.date | date}}</span></p>
+                <p>
+                  <span class="icon-visibility text-success"></span>
+                  (3 views)</span>
+                </p>
+              </div>
+            </div>
+            {% endfor %}
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    

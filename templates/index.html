@@ -1,0 +1,424 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Home | Apostolic Testimony </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rangeslider.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+  </head>
+  <body>
+  
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+    <header class="site-navbar py-2 bg-white" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-11 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="{% url 'index' %}" class="text-black h2 mb-0" style="font-family:arial rounded mt; font-size: 16px;">Apostolic Testimony</a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li class="active"><a href="{% url 'index' %}"><span>Home</span></a></li>
+                <li><a href="{% url 'about' %}"><span>About</span></a></li>
+                <li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
+                <li><a href="{% url 'create_post' %}"><span>Add testimony +</span></a></li>
+                <li class="has-children" >
+                  <a >
+                    <span><img {% if request.user.publicuser.profile_img %} src="{{request.user.publicuser.profile_img.url}}" {% else %}
+                                src="{% static 'images/avatar.png' %}"{% endif %}
+                               alt="Image" 
+                              style="width: 50px;border: 2px solid #7971ea; border-radius: 50%; height: 50px;"></span></a>
+                  <ul class="dropdown">
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'dashboad' %}">User Profile</a></li>
+                    <li><a href="{% url 'sigout' %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+                    {% endif %}
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'signUp' %}">Sign Up</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+
+        </div>
+      </div>
+      
+    </header>
+
+  
+
+    <div class="site-blocks-cover overlay" style="background-image: url({% static 'images/hero_1.jpg' %});" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-10">
+            
+            
+            <div class="row justify-content-center mb-4">
+              <div class="col-md-8 text-center">
+                <h1 data-aos="fade-up">My Testmony ; <span class="typed-words"></span></h1>
+                <p data-aos="fade-up" data-aos-delay="100">Bible Quote : {{bibleQuotes.quote | safe}}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <!--testimony Categories-->
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary">Various Categories</h2>
+          </div>
+        </div>
+    
+        <div class="row align-items-stretch">
+          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="{% url 'salvation' %}" class="popular-category h-100">
+              <span class="icon"><span class="icon-transform"></span></span>
+              <span class="caption mb-2 d-block">Salvation</span>
+              <span class="number">{{salvation_cat_count}}</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="{% url 'health' %}" class="popular-category h-100">
+              <span class="icon"><span class="icon-sentiment_satisfied"></span></span>
+              <span class="caption mb-2 d-block">Health</span>
+              <span class="number">{{health_cat_count}}</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="{% url 'addiction' %}" class="popular-category h-100">
+              <span class="icon"><span class="icon-hot_tub"></span></span>
+              <span class="caption mb-2 d-block">Addiction</span>
+              <span class="number">{{addiction_cat_count}}</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="{% url 'finance' %}" class="popular-category h-100">
+              <span class="icon"><span class="flaticon-shopping-bag"></span></span>
+              <span class="caption mb-2 d-block">Finance</span>
+              <span class="number">{{finance_cat_count}}</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="{% url 'protection' %}" class="popular-category h-100">
+              <span class="icon"><span class="icon-security"></span></span>
+              <span class="caption mb-2 d-block">Protection</span>
+              <span class="number">{{protection_cat_count}}</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="{% url 'others' %}" class="popular-category h-100">
+              <span class="icon"><span class="icon-sort2"></span></span>
+              <span class="caption mb-2 d-block">Others</span>
+              <span class="number">{{others_cat_count}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary">Share, Be Encouraged</h2>
+            <p class="color-black-opacity-5">share, Encourage  &amp; be inspired</p>
+          </div>
+        </div>
+
+        
+        <div class="site-section">
+          <div class="container">
+            <div class="row">
+        
+              <div class="col-md-8">
+        
+                <div class="row">
+                  {% for message in messages %}
+                  <p>{{message}}</p>
+                  {% endfor %}
+                  {% if paginated_posts != '' %}
+                  {% for testimony in paginated_posts %}
+                  {% if testimony.approved %}
+                  <div class="d-block d-md-flex listing-horizontal" style="width: 200rem;">
+                  
+                    <span class="badge badge-pill badge-secondary ml-4 mt-3"
+                      style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;">
+                      {{testimony.category}}
+                    </span>
+                  
+                    <div class="lh-content">
+                      <h3><a href="detailed/{{testimony.id}}/{{testimony.slug}}/">{{testimony.title}}</a></h3>
+                      <p>by : <span style="font-weight: bold;">{{testimony.author}}</span></p>
+                      <!-- <p>
+                        <span class="icon-visibility text-success"></span>
+                        (3 views)</span>
+                      </p> -->
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                  {% else %}
+                  <div class="container">
+                    <div class="d-block d-md-flex listing-horizontal card  alert-warning">
+                      <div class="lh-content">
+                        <h3>Sorry there is no testimony of any Category yet! please check back later or</h3>
+                        <p>if Jesus has saved you and you'll like to share your testimony please</p>
+                        <a href="{% url 'create_post' %}">Click Here</a>
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+                
+                <div class="col-12 text-center mt-5">
+                  <p class="custom-pagination">
+                    {% for page_number in paginator.page_range %}
+                    
+                    {% if page_number == paginated_posts.number %}
+                    <span>{{page_number}}</span>
+                    {% elif page_number > paginated_posts.number|add:'-3' and page_number < paginated_posts.number|add:'3' %}
+                    <a href="?{{page_request_varable}}={{page_number}}">{{page_number}}</a>
+                    {% endif %}
+                    {% endfor %}
+                    {% if paginator.num_pages > 6 %}
+                    <span>....</span>
+                    <a href="?{{page_request_varable}}={{paginator.num_pages}}">{{paginator.num_pages}}</a>
+                    {% endif %}
+                    
+                    
+                  </p>
+                </div>
+              </div>
+               
+              
+
+              
+              <div class="col-md-3 ml-auto">
+                <div class="mb-5">
+                  <h3 class="h5 text-black mb-3">Search</h3>
+                  <form method="post" action="search">
+                    {% csrf_token %}
+                    <div class="form-group d-flex">
+                      <input type="text" class="form-control" name="search" placeholder="Search keyword and hit enter...">
+                    </div>
+                  </form>
+                </div>
+        
+                <div class="mb-5">
+                  <h3 class="h5 text-black mb-3">In case you've not read</h3>
+                  <ul class="list-unstyled">
+                    {% for testimony in testimonies %}
+                    <li class="mb-2"><a href="detailed/{{testimony.id}}/{{testimony.slug}}/">{{testimony.title}}</a></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+        
+              </div>
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary">Some Answered Question</h2>
+            <p class="color-black-opacity-5">answers to questions you may want to ask</p>
+          </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+          <div class="col-8">
+            {% for askedQuestion in askedQuestions %}
+            <div class="border p-3 rounded mb-2">
+              <a data-toggle="collapse" href="#collapse-1" role="button"
+                aria-expanded="false" aria-controls="collapse-1" 
+                class="accordion-item h5 d-block mb-0">{{askedQuestion.question}}</a>
+
+              <div class="collapse" id="collapse-1">
+                <div class="pt-2">
+                  <p class="mb-0">{{askedQuestion.answer | safe}}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="py-5 bg-primary">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <h2 class="mb-2 text-white">Let's get started. Create your account</h2>
+            <p class="mb-4 lead text-white-opacity-05">we overcome the devil by our testimonies, you'll like to share a testimony to the world ?
+            it only takes few minute to setup you account</p>
+            <p class="mb-0"><a href="{% url 'signUp' %}" class="btn btn-outline-white text-white btn-md font-weight-bold">Sign Up</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-3">
+            <h2 class="footer-heading mb-4">Quick Links</h2>
+            <ul class="list-unstyled">
+              <li><a href="{% url 'about' %}">About Us</a></li>
+              <li><a href="{% url 'index' %}">Testimony shop</a></li>
+              <li><a href="{% url 'contact' %}">Contact Us</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-md-3">
+            <h2 class="footer-heading mb-4">Follow Us</h2>
+            <a href="https://web.facebook.com/Apostolic-Testimony-101094998346957" target="_blank" class="pl-0 pr-3"><span
+                class="icon-facebook"></span>acebook</a>
+            <a href="https://twitter.com/apostolictesti1" class="pl-0 pr-3" target="_blank" ><span class="icon-twitter"></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3  mt-4">
+        {% for mess in messages %}
+        <p style="color: white;">{{mess}}</p>
+        {% endfor %}
+        <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
+        <form action="." method="post" id="subscribe_form">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            {{form.email}}
+            <div class="input-group-append">
+              <button class="btn btn-primary text-white" type="submit" id="button-addon2">Send</button>
+            </div>
+          </div>  
+        </form>
+        <div id="message-card" class="alert alert-dismissible fade show">
+          <span class="card-body">
+            <a id="message"></a>
+            <i id='message-icon' class=""></i>
+          </span>
+    
+        </div>
+        <!-- alert-message end -->
+        
+      </div>
+    </div>
+    <div class="row pt-5 mt-5 text-center">
+      <div class="col-md-12">
+        <div class="border-top pt-5">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved | Developed
+            with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://mobile.twitter.com/TaiwoAdegite" target="_blank">adegitetaiwo</a> |
+            Template by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+<script src="{% static 'js/rangeslider.min.js' %}"></script>
+<script src="{% static 'js/alert_handling.js' %}"></script>
+
+
+
+<script src="{% static 'js/typed.js' %}"></script>
+<script>
+  var typed = new Typed('.typed-words', {
+    strings: ["a Tool to put the devil to shame.",
+      "the physical prove to God's Love!",
+      " an Encouragment to the weak.",
+      " a reminder of God's Might!"],
+    typeSpeed: 60,
+    backSpeed: 80,
+    backDelay: 4000,
+    startDelay: 1000,
+    loop: true,
+    showCursor: true
+  });
+</script>
+
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

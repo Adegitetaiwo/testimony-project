@@ -1,0 +1,312 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Create  | Apostolic Testimony </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rangeslider.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- for Tinymce editor to show we put the media contol -->
+    {{ create_new_testimony.media }}
+</head>
+
+<body>
+
+    <div class="site-wrap">
+
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        <header class="site-navbar py-2 bg-white" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+        
+                <div class="col-11 col-xl-2">
+                    <h1 class="mb-0 site-logo"><a href="{% url 'index' %}" class="text-black h2 mb-0"
+                            style="font-family:arial rounded mt; font-size: 16px;">Apostolic Testimony</a></h1>
+                </div>
+                <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+        
+                        <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li><a href="{% url 'index' %}"><span>Home</span></a></li>
+                            <li><a href="{% url 'about' %}"><span>About</span></a></li>
+                            <li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
+                            <li class="active"><a href="{% url 'create_post' %}"><span>Add testimony +</span></a></li>
+                            <li class="has-children">
+                                <a>
+                                    <span><img {% if request.user.publicuser.profile_img %} src="{{request.user.publicuser.profile_img.url}}" {% else %}
+                                src="{% static 'images/avatar.png' %}"{% endif %} alt="Image"
+                                            style="width: 50px;border: 2px solid #7971ea; border-radius: 50%;height: 50px;"></span></a>
+                                <ul class="dropdown">
+                                    {% if user.is_authenticated %}
+                                    <li><a href="{% url 'dashboad' %}">User Profile</a></li>
+                                    <li><a href="{% url 'sigout' %}">Log Out</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+                                    {% endif %}
+                                    {% if not user.is_authenticated %}
+                                    <li><a href="{% url 'signUp' %}">Sign Up</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+        
+        
+                <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#"
+                        class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a>
+                </div>
+        
+            </div>
+        
+        </div>
+
+    </header>
+
+
+
+    <div class="site-blocks-cover inner-page-cover overlay header-backgroud" data-aos="fade" >
+        <div class="container">
+            <div class="row align-items-center justify-content-center text-center">
+
+                <div class="col-md-10">
+
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 text-center">
+                            <h1 class="mt-4" data-aos="fade-up">Testify to the Glory of God</h1>
+                        </div>
+                        <div class="card mb-12 alert alert-success" style="color: black;" data-aos="fade-up" id="welcome">
+                            <div class="card-body">
+                                <p class="mb-0 justify-text-center" data-aos="fade-up" style="font-family:Arial rounded mt; color: black !important; font-size: 17px;">Welcome friend, Congratulation
+                                    on your decision in writing down your testimony for it is a ministarial tool to put the
+                                    devil to shame, to give God all glory in appreciation and as a tool for encouraging fellow christians in
+                                    Christ Jesus .</p>
+                                <p class="mb-0 justify-text-center" data-aos="fade-up" style="font-family:Arial rounded mt; color: black !important;font-size: 17px;">So we Congratulate you once
+                                    again and encourage you to write to the glorification of Christ Jesus and not for your glory.</p>
+                            </div>
+                        
+                            <div class="mt-2 mb-3">
+                                <button id="create_button">Click to continue</button>
+                            </div>
+                        </div>
+
+                        <!-- Alert message begin  -->
+                        {% for message in messages %}
+                        <div class="alert {{message.tags}} alert-dismissible fade show" role="alert"">
+                            <ul style=" display:flex; list-style: none;">
+                            <li style="margin-left:20px;">
+                                <!--error icon-->
+                                {% if message.tags == "alert-danger" %}
+                                <span class="icon icon-warning"></span>
+                                {% endif %}
+                                <!--success icon-->
+                                {% if message.tags == 'alert-success' %}
+                                <span style="font-size: 20px; float: left;" class="icon icon-check"></span>
+                                {% endif %}
+                            </li>
+                            <li id='post_success'>{{message}}</li>
+                            
+                        </div>
+                        {% endfor %}
+                        <!-- Alert message ends -->
+                    </div>
+                    
+                    
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="d-none" id="editor">
+    <div class="site-section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-12" data-aos="fade">
+
+
+
+                    <form class="p-5 bg-white" method="POST" id="create_form">
+                        {% csrf_token %}
+
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                <label class="text-black" for="fname">Title</label>
+                                {{create_new_testimony.title}}
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label class="text-black" for="lname">Category</label>
+                                <div id="lname" class="form-control" placeholder="salvation, health, addiction, finance, protection, others">
+                                    {{create_new_testimony.category}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="text-black" for="email">Email</label>
+                                {{create_new_testimony.email}}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="text-black" for="message">Body</label>
+                                {{create_new_testimony.body}}
+                            </div>
+                        </div>
+
+                        <hr class="mt-3 borderline">
+                        <p class="mt-3" style="text-align: center;">Some little Settings</p>
+                        <!-- <div>
+                            <p>Set my <span style="font-weight: bold;">profile picture</span> to "Anonymous"</p>
+                            Off
+                            <label class="switch">
+                                <input type="checkbox" name="" id="">
+                                <span class="slider round"></span>
+                            </label>
+                            On
+                        </div> -->
+                        <div>
+                            <p>Name : Use my Username Instead</p>
+                            Off
+                            <label class="switch">
+                                {{create_new_testimony.setNameToAnonymous}}
+                                <span class="slider round"></span>
+                            </label>
+                            On
+                        </div>
+                        <hr class="mt-3 borderline">
+
+                        
+
+                        <div class="row form-group">
+                            <div class="col-md-12 mt-3">
+                                <input type="submit" value="Submit Testimony" class="btn btn-primary py-2 px-4 text-white" style="width: 100%;">
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="site-footer" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h2 class="footer-heading mb-4">Quick Links</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url 'about' %}">About Us</a></li>
+                            <li><a href="{% url 'index' %}">Testimony shop</a></li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h2 class="footer-heading mb-4">Follow Us</h2>
+                        <a href="https://web.facebook.com/Apostolic-Testimony-101094998346957" target="_blank"
+                            class="pl-0 pr-3"><span class="icon-facebook"></span>acebook</a>
+                        <a href="https://twitter.com/apostolictesti1" class="pl-0 pr-3" target="_blank"><span
+                                class="icon-twitter"></span></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+                <div class="border-top pt-5">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | Developed
+                        with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://twitter.com/TaiwoAdegite" target="_blank">adegitetaiwo</a> |
+                        Template by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+</div>
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+<script src="{% static 'js/rangeslider.min.js' %}"></script>
+<script src="{% static 'js/alert_handling.js' %}"></script>
+
+
+
+<script src="{% static 'js/typed.js' %}"></script>
+<script>
+   let  createButton = document.getElementById('create_button'),
+        editor = document.getElementById('editor')
+   let  success_message = document.getElementById('post_success'),
+        welcome = document.getElementById('welcome')
+        
+    createButton.addEventListener('click', (e)=>{
+        editor.classList.remove('d-none')
+        editor.classList.remove('d-block')
+        createButton.classList.add('d-none')
+    })
+
+    if (success_message) {
+        welcome.classList.add('d-none')
+    }
+    
+</script>
+
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
+    

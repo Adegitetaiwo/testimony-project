@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Contact | Apostolic Testimony </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rangeslider.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+  </head>
+  <body>
+  
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+    <header class="site-navbar py-2 bg-white" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+      
+          <div class="col-11 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="{% url 'index' %}" class="text-black h2 mb-0"
+                style="font-family:arial rounded mt; font-size: 16px;">Apostolic Testimony</a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+      
+              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li><a href="{% url 'index' %}"><span>Home</span></a></li>
+                <li><a href="{% url 'about' %}"><span>About</span></a></li>
+                <li class="active"><a href="{% url 'contact' %}"><span>Contact</span></a></li>
+                <li><a href="{% url 'create_post' %}"><span>Add testimony +</span></a></li>
+                <li class="has-children">
+                  <a>
+                    <span><img {% if request.user.publicuser.profile_img %} src="{{request.user.publicuser.profile_img.url}}" {% else %}
+                                src="{% static 'images/avatar.png' %}"{% endif %} alt="Image"
+                        style="width: 50px;border: 2px solid #7971ea; border-radius: 50%; height: 50px;"></span></a>
+                  <ul class="dropdown">
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'dashboad' %}">User Profile</a></li>
+                    <li><a href="{% url 'sigout' %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+                    {% endif %}
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'signUp' %}">Sign Up</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+      
+      
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#"
+              class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a>
+          </div>
+      
+        </div>
+      
+      </div>
+      
+    </header>
+
+  
+
+    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({% static 'images/hero_1.jpg' %});" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-10">
+            
+            
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center">
+                <h1 data-aos="fade-up">Get In Touch</h1>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>  
+
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5" data-aos="fade" data-aos-delay="100">
+          
+            <div class="p-4 mb-3 bg-white">
+              <p class="mb-0 font-weight-bold">Address</p>
+              <p class="mb-4">Futa South Gate, Akure Nigeria</p>
+          
+              <p class="mb-0 font-weight-bold">Email Address</p>
+              <p class="mb-0"><a href="mailto:apostolictestimony@gmail.com">apostolictestimony@gmail.com</a></p>
+          
+            </div>
+          
+          </div>
+          <div class="col-md-7 mb-5"  data-aos="fade">
+
+            
+
+            <form  class="p-5 bg-white" method="POST">
+              {% csrf_token %}
+             
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">First Name</label>
+                  {{contactForm.first_name}}
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="lname">Last Name</label>
+                  {{contactForm.last_name}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                
+                <div class="col-md-12">
+                  <label class="text-black" for="email">Email</label> 
+                  {{contactForm.email}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                
+                <div class="col-md-12">
+                  <label class="text-black" for="subject">Subject</label> 
+                  {{contactForm.subject}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="message">Message</label> 
+                  {{contactForm.message}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Send Message" class="btn btn-primary py-2 px-4 text-white">
+                </div>
+              </div>
+
+  
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary">Some Answered Question</h2>
+            <p class="color-black-opacity-5">answers to questions you may want to ask</p>
+          </div>
+        </div>
+    
+    
+        <div class="row justify-content-center">
+          <div class="col-8">
+            {% for askedQuestion in askedQuestions %}
+            <div class="border p-3 rounded mb-2">
+              <a data-toggle="collapse" href="#collapse-1" role="button" aria-expanded="false" aria-controls="collapse-1"
+                class="accordion-item h5 d-block mb-0">{{askedQuestion.question}}</a>
+    
+              <div class="collapse" id="collapse-1">
+                <div class="pt-2">
+                  <p class="mb-0">{{askedQuestion.answer | safe}}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+    
+          </div>
+    
+        </div>
+    
+      </div>
+    </div>
+  {% endblock %}
