@@ -56,10 +56,22 @@
                     <nav class="site-navigation position-relative text-right" role="navigation">
         
                         <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                            <li class="active"><a href="{% url 'index' %}"><span>Home</span></a></li>
+                            <li><a href="{% url 'index' %}"><span>Home</span></a></li>
                             <li><a href="{% url 'about' %}"><span>About</span></a></li>
                             <li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
                             <li><a href="{% url 'create_post' %}"><span>Add testimony +</span></a></li>
+                            <li class="has-children active">
+                                <a ><span>Categories</span></a>
+                                <ul class="dropdown">
+                                    <li class="active"><a href="{% url 'salvation' %}">Salvation</a></li>
+                                    <li><a href="{% url 'health' %}">Health</a></li>
+                                    <li><a href="{% url 'addiction' %}">Addiction</a></li>
+                                    <li><a href="{% url 'finance' %}">Finance</a></li>
+                                    <li><a href="{% url 'protection' %}">Protection</a></li>
+                                    <li><a href="{% url 'others' %}">Others</a></li>
+
+                                </ul>
+                            </li>
                             <li class="has-children">
                                 <a>
                                     <span><img {% if request.user.publicuser.profile_img %} src="{{request.user.publicuser.profile_img.url}}" {% else %}
@@ -93,57 +105,11 @@
     </header>
 
     <!--testimony Categories-->
-    <div class="site-section">
+    <div class="category-title">
         <div class="container">
-            <div class="row justify-content-center mb-5">
+            <div class="row justify-content-center">
                 <div class="col-md-7 text-center border-primary">
-                    <h2 class="font-weight-light text-primary">Various Categories</h2>
-                    <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
-                </div>
-            </div>
-
-            <div class="row align-items-stretch">
-                <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-                    <a href="{% url 'salvation' %}" class="popular-category h-100 active_a_tag">
-                        <span class="icon"><span class="icon-transform"></span></span>
-                        <span class="caption mb-2 d-block" id="active_span">Salvation</span>
-                        <span class="number active_anchor_tag" id="active_count_span">{{salvation_cat_count}}</span>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-                    <a href="{% url 'health' %}" class="popular-category h-100">
-                        <span class="icon"><span class="icon-sentiment_satisfied"></span></span>
-                        <span class="caption mb-2 d-block">Health</span>
-                        <span class="number">{{health_cat_count}}</span>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-                    <a href="{% url 'addiction' %}" class="popular-category h-100">
-                        <span class="icon"><span class="icon-hot_tub"></span></span>
-                        <span class="caption mb-2 d-block">Addiction</span>
-                        <span class="number">{{addiction_cat_count}}</span>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-                    <a href="{% url 'finance' %}" class="popular-category h-100">
-                        <span class="icon"><span class="flaticon-shopping-bag"></span></span>
-                        <span class="caption mb-2 d-block">Finance</span>
-                        <span class="number">{{finance_cat_count}}</span>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-                    <a href="{% url 'protection' %}" class="popular-category h-100">
-                        <span class="icon"><span class="icon-security"></span></span>
-                        <span class="caption mb-2 d-block">Protection</span>
-                        <span class="number">{{protection_cat_count}}</span>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-                    <a href="{% url 'others' %}" class="popular-category h-100">
-                        <span class="icon"><span class="icon-sort2"></span></span>
-                        <span class="caption mb-2 d-block">Others</span>
-                        <span class="number">{{others_cat_count}}</span>
-                    </a>
+                    <h4 class="font-weight-light text-primary">Category : Salvation</h4>
                 </div>
             </div>
         </div>
@@ -169,20 +135,34 @@
                                 {% for testimony in paginated_posts %}
                                     <div class="d-block d-md-flex listing-horizontal" style="width: 200rem;">
                             
-                                <span class="badge badge-pill badge-secondary ml-4 mt-3"
-                                    style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;">
-                                    {{testimony.category}}
-                                </span>
+                                <!-- screen less than 766px -->
+                                <div class="mr-5">
+                                    <span class="badge badge-pill badge-secondary mt-3"
+                                        style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;" id="cat_tag_small">
+                                        {{testimony.category}}
+                                    </span>
+                                </div>
+
                             
                                 <div class="lh-content">
                                     <h3><a href="/detailed/{{testimony.id}}/{{testimony.slug}}/">{{testimony.title}}</a></h3>
-                                    <p>{{testimony.author}}</p>
+                                    <p><i class="icon icon-user"></i> <span style="font-weight: bold;">{{testimony.author}}</span></p>
+                                    
                                     <p>
-                                        <span class="icon-visibility text-success"></span>
-                                        (3 views)</span>
+                                        <span class="icon-comment text-success"></span>
+                                        <a href="/detailed/{{testimony.id}}/{{testimony.slug}}/#disqus_thread">Join the Discussion</a></span>
                                     </p>
                                 </div>
-                                    </div>
+
+                                <!-- screen greater than 766px -->
+                                <div class="mr-5">
+                                    <span class="badge badge-pill badge-secondary mt-3"
+                                        style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;" id="cat_tag_large">
+                                        {{testimony.category}}
+                                    </span>
+                                </div>
+
+                            </div>
                                 {% endfor %}
                               {% else %} 
                                 <div class="container">

@@ -145,9 +145,10 @@
               <div class="col-md-6 mt-4" style="float: right;">
                 <span style="font-weight: bold;">share Links</span><br>
                 <ul style="list-style: none; display: inline-flex;">
-                  <li><div class="fb-share-button" data-href="{{pageLink}}" data-layout="button_count"
-                    data-size="small"><a target="_blank"
-                      href="https://www.facebook.com/sharer/sharer.php?u={{pageLink | urlencode}}&amp;src=sdkpreparse"
+                  <li>
+                    <div class="fb-share-button" data-href="{{pageLink}}" data-layout="button_count"
+                      data-size="small">
+                      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{pageLink | urlencode}}&amp;src=sdkpreparse"
                       class="fb-xfbml-parse-ignore">Share</a></div>
                   </li>
                   <li class="ml-4">
@@ -200,19 +201,29 @@
             {% for all_post in all %}
             <div class="d-block d-md-flex listing-horizontal col-md-7">
             
-              <span class="badge badge-pill badge-secondary ml-4 mt-3"
-                style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;">
-                {{all_post.category}}
-              </span>
-            
+              <!-- screen greater than 766 -->
+              <div class="mr-5">
+                <span class="badge badge-pill badge-secondary mt-3"
+                  style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;" id="cat_tag_small">
+                  {{all_post.category}}
+                </span>
+              </div>
               <div class="lh-content">
                 <h3><a href="{% url 'index' %}detailed/{{all_post.id}}/{{all_post.slug}}/">{{all_post.title}}</a></h3>
-                <p><span style="font-weight: bold;">{{all_post.author}}</span> <span>On {{all_post.date | date}}</span></p>
+                <p><span class="icon icon-user"></span><span style="font-weight: bold;">{{all_post.author}}</span> <span>On {{all_post.date | date}}</span></p>
                 <p>
                   <span class="icon-comment text-success"></span>
                   
                   <a href="/detailed/{{all_post.id}}/{{all_post.slug}}/#disqus_thread">Join the Discussion</a></span>
                 </p>
+              </div>
+
+              <!-- screen greater than 766 -->
+              <div class="mr-5">
+                <span class="badge badge-pill badge-secondary mt-3"
+                  style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;" id="cat_tag_large">
+                  {{all_post.category}}
+                </span>
               </div>
             </div>
             {% endfor %}

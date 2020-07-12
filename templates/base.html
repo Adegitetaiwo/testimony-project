@@ -35,10 +35,27 @@
                             <a href="https://web.facebook.com/Apostolic-Testimony-101094998346957" target="_blank" class="pl-0 pr-3"><span class="icon-facebook"></span>acebook</a>
                             <a href="https://twitter.com/apostolictesti1" class="pl-0 pr-3" target="_blank"><span class="icon-twitter"></span></a>
                         </div>
+                        <div class="col-md-6">
+                            <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
+                            <form action="." method="post" id="subscribe_form">
+                                {% csrf_token %}
+                                <div class="input-group mb-3">
+                                    {{form.email}}
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary text-white" type="submit" id="button-addon2">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="message-card" class="alert alert-dismissible fade show">
+                                <span class="card-body">
+                                    <a id="message"></a>
+                                    <i id='message-icon' class=""></i>
+                                </span>
+                        
+                            </div>
+                            <!-- alert-message end -->
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 mt-4">
-                    <h5>please go to the <a href="{% url 'index' %}">Home</a> page footer to subscribe for latest testimony</h5>
                 </div>
             </div>
             <div class="row pt-5 mt-5 text-center">
@@ -92,6 +109,75 @@
     </script>
 
     <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+        $(document).ready(() => {
+                $(document).on('submit', '#subscribe_form', (e) => {
+                    e.preventDefault();
+
+                    let email_input = $('#subscribe_input').val()
+                    let messageCard = document.getElementById('message-card'),
+                        message = document.getElementById('message'),
+                        messageIcon = document.getElementById('message-icon')
+
+
+                    const emailIsValid = (mailInput) => {
+                        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(mailInput)
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '',
+                        data: {
+                            email: email_input,
+                            csrfmiddlewaretoken: $('input[name= csrfmiddlewaretoken]').val(),
+                        },
+
+                        success: () => {
+                            if (emailIsValid(email_input)) {
+                                //set message card class
+                                messageCard.classList.remove('alert-warning')
+                                messageCard.classList.add('alert-success')
+                                //set success text message
+                                message.textContent = 'Thank you for your Subscription, please check your Email for Update'
+                                messageIcon.className = 'icon icon-check'
+
+                                //hide form
+                                $('#subscribe_form').hide()
+
+                            } else {
+                                //set message card class
+                                messageCard.classList.remove('alert-success')
+                                messageCard.classList.add('alert-warning')
+                                //set success text message
+                                message.textContent = 'Something went wrong please check your email is if it Valid'
+                                messageIcon.className = 'icon icon-warning'
+
+                            }
+
+                        },
+                        error: () => {
+                            //set message card class
+                            messageCard.classList.remove('alert-success')
+                            messageCard.classList.add('alert-warning')
+                            //set success text message
+                            message.textContent = 'Something went wrong please check your email is if it Valid'
+                            messageIcon.className = 'icon icon-warning'
+                        },
+                    })
+                });
+
+                $(document).on('submit', '#create_form', (e) => {
+                    let confirm_form = confirm(`Are you sure you want to submit ? Testimony won't be editable after submission. If you'll still like to cross-check for typo errors Click 'Cancel' otherwise Click 'OK' `);
+
+                    if (!confirm_form) {
+                        e.preventDefault()
+                    }
+                });
+
+            });
+
+    </script>
 
 </body>
 

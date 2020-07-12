@@ -1792,4 +1792,29 @@ input:checked + .slider:before {
 
 
 
-/* Reset password Sent styling */
+/* screen equal or less than 762px */
+@media (max-width: 766px){
+  #cat_tag_small{
+      display: block;
+      margin-left: 20px;
+  }
+
+  #cat_tag_large{
+      display: none;
+  }
+      }
+
+/* screen greater than 686px */
+
+@media (min-width: 766.55px){
+  #cat_tag_large{
+      display: block;
+  }
+
+  #cat_tag_small{
+      display: none;
+  }
+}
+      
+
+    

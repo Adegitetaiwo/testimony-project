@@ -25,10 +25,11 @@ def page_pagination(page_request_varable, page, paginator):
     return paginated_query
 
 def index(request):
-    testimony = newTestimonies.objects.all().order_by('-id')
-    recent_testimony = newTestimonies.objects.all().order_by('-id')[:7]
-    askedQuestions = askedQuestion.objects.all()
-    bibleQuotes = bibleQuote.objects.last()
+    testimony = newTestimonies.objects.filter(approved=True).order_by('-id')
+    recent_testimony = newTestimonies.objects.filter(
+        approved=True).order_by('-id')[:7]
+    asked_questions = askedQuestion.objects.all()
+    bible_quotes = bibleQuote.objects.last()
 
     #category counts
     salvation_cat = newTestimonies.objects.filter(
@@ -66,8 +67,8 @@ def index(request):
     content = {
         'testimonies': recent_testimony,
         'form': subscribeForm,
-        'askedQuestions': askedQuestions,
-        'bibleQuotes' : bibleQuotes,
+        'askedQuestions': asked_questions,
+        'bibleQuotes': bible_quotes,
 
         #category count
         'salvation_cat_count': salvation_cat.count,
@@ -87,9 +88,10 @@ def index(request):
 #view for salvation section
 def salvation(request):
     testimony = newTestimonies.objects.all().filter(
-        category='salvation').order_by('-id')
-    recent_testimony = newTestimonies.objects.all().order_by('-id')[:7]
-    askedQuestions = askedQuestion.objects.all()
+        category='salvation', approved=True).order_by('-id')
+    recent_testimony = newTestimonies.objects.filter(
+        approved=True).order_by('-id')[:7]
+    asked_questions = askedQuestion.objects.all()
 
     
     #category counts
@@ -115,9 +117,20 @@ def salvation(request):
     except EmptyPage:
         paginated_query = ''
 
+    subscribeForm = subscribeForms(request.POST or None)
+    if request.method == 'POST':
+        if subscribeForm.is_valid:
+            subscribeForm.save()
+            #messages.success(request, 'Thamks for your Subscription!')
+            return HttpResponseRedirect(request.path_info)
+        else:
+            #messages.error(request, 'Invalid')
+            return HttpResponseRedirect(request.path_info)
+
     content = {
         'testimonies': recent_testimony,
-        'askedQuestions': askedQuestions,
+        'askedQuestions': asked_questions,
+        'form': subscribeForm,
 
         #category count
         'salvation_cat_count': salvation_cat.count,
@@ -138,9 +151,10 @@ def salvation(request):
 
 def health(request):
     testimony = newTestimonies.objects.all().filter(
-        category='health').order_by('-id')
-    recent_testimony = newTestimonies.objects.all().order_by('-id')[:7]
-    askedQuestions = askedQuestion.objects.all()
+        category='health', approved=True).order_by('-id')
+    recent_testimony = newTestimonies.objects.filter(
+        approved=True).order_by('-id')[:7]
+    asked_questions = askedQuestion.objects.all()
 
 
     #category counts
@@ -166,9 +180,21 @@ def health(request):
     except EmptyPage:
         paginated_query = ''
 
+    subscribeForm = subscribeForms(request.POST or None)
+    if request.method == 'POST':
+        if subscribeForm.is_valid:
+            subscribeForm.save()
+            #messages.success(request, 'Thamks for your Subscription!')
+            return HttpResponseRedirect(request.path_info)
+        else:
+            #messages.error(request, 'Invalid')
+            return HttpResponseRedirect(request.path_info)
+
     content = {
         'testimonies': recent_testimony,
-        'askedQuestions': askedQuestions,
+        'askedQuestions': asked_questions,
+        'form': subscribeForm,
+
 
         #category count
         'salvation_cat_count': salvation_cat.count,
@@ -189,9 +215,10 @@ def health(request):
 
 def addiction(request):
     testimony = newTestimonies.objects.all().filter(
-        category='addiction').order_by('-id')
-    recent_testimony = newTestimonies.objects.all().order_by('-id')[:7]
-    askedQuestions = askedQuestion.objects.all()
+        category='addiction', approved=True).order_by('-id')
+    recent_testimony = newTestimonies.objects.filter(
+        approved=True).order_by('-id')[:7]
+    asked_questions = askedQuestion.objects.all()
 
     #category counts
     salvation_cat = newTestimonies.objects.filter(
@@ -215,10 +242,23 @@ def addiction(request):
         paginated_query = page_pagination(page_request_varable, page, paginator)
     except EmptyPage:
         paginated_query = ''
+    
+    subscribeForm = subscribeForms(request.POST or None)
+    if request.method == 'POST':
+        if subscribeForm.is_valid:
+            subscribeForm.save()
+            #messages.success(request, 'Thamks for your Subscription!')
+            return HttpResponseRedirect(request.path_info)
+        else:
+            #messages.error(request, 'Invalid')
+            return HttpResponseRedirect(request.path_info)
+
 
     content = {
         'testimonies': recent_testimony,
-        'askedQuestions': askedQuestions,
+        'askedQuestions': asked_questions,
+        'form': subscribeForm,
+
 
         #category count
         'salvation_cat_count': salvation_cat.count,
@@ -239,9 +279,10 @@ def addiction(request):
 
 def finance(request):
     testimony = newTestimonies.objects.all().filter(
-        category='finance').order_by('-id')
-    recent_testimony = newTestimonies.objects.all().order_by('-id')[:7]
-    askedQuestions = askedQuestion.objects.all()
+        category='finance', approved=True).order_by('-id')
+    recent_testimony = newTestimonies.objects.filter(
+        approved=True).order_by('-id')[:7]
+    asked_questions = askedQuestion.objects.all()
 
     #category counts
     salvation_cat = newTestimonies.objects.filter(
@@ -265,10 +306,22 @@ def finance(request):
         paginated_query = page_pagination(page_request_varable, page, paginator)
     except EmptyPage:
         paginated_query = ''
+    
+    subscribeForm = subscribeForms(request.POST or None)
+    if request.method == 'POST':
+        if subscribeForm.is_valid:
+            subscribeForm.save()
+            #messages.success(request, 'Thamks for your Subscription!')
+            return HttpResponseRedirect(request.path_info)
+        else:
+            #messages.error(request, 'Invalid')
+            return HttpResponseRedirect(request.path_info)
 
     content = {
         'testimonies': recent_testimony,
-        'askedQuestions': askedQuestions,
+        'askedQuestions': asked_questions,
+        'form': subscribeForm,
+
 
         #category count
         'salvation_cat_count': salvation_cat.count,
@@ -289,9 +342,10 @@ def finance(request):
 
 def protection(request):
     testimony = newTestimonies.objects.all().filter(
-        category='protection').order_by('-id')
-    recent_testimony = newTestimonies.objects.all().order_by('-id')[:7]
-    askedQuestions = askedQuestion.objects.all()
+        category='protection', approved=True).order_by('-id')
+    recent_testimony = newTestimonies.objects.filter(
+        approved=True).order_by('-id')[:7]
+    asked_questions = askedQuestion.objects.all()
 
     #category counts
     salvation_cat = newTestimonies.objects.filter(
@@ -315,10 +369,21 @@ def protection(request):
         paginated_query = page_pagination(page_request_varable, page, paginator)
     except EmptyPage:
         paginated_query = ''
+    
+    subscribeForm = subscribeForms(request.POST or None)
+    if request.method == 'POST':
+        if subscribeForm.is_valid:
+            subscribeForm.save()
+            #messages.success(request, 'Thamks for your Subscription!')
+            return HttpResponseRedirect(request.path_info)
+        else:
+            #messages.error(request, 'Invalid')
+            return HttpResponseRedirect(request.path_info)
 
     content = {
         'testimonies': recent_testimony,
-        'askedQuestions': askedQuestions,
+        'askedQuestions': asked_questions,
+        'form': subscribeForm,
 
         #category count
         'salvation_cat_count': salvation_cat.count,
@@ -339,9 +404,10 @@ def protection(request):
 
 def others(request):
     testimony = newTestimonies.objects.all().filter(
-        category='others').order_by('-id')
-    recent_testimony = newTestimonies.objects.all().order_by('-id')[:7]
-    askedQuestions = askedQuestion.objects.all()
+        category='others', approved=True).order_by('-id')
+    recent_testimony = newTestimonies.objects.filter(
+        approved=True).order_by('-id')[:7]
+    asked_questions = askedQuestion.objects.all()
 
     #category counts
     salvation_cat = newTestimonies.objects.filter(
@@ -366,9 +432,22 @@ def others(request):
     except EmptyPage:
         paginated_query = ''
 
+    subscribeForm = subscribeForms(request.POST or None)
+    if request.method == 'POST':
+        if subscribeForm.is_valid:
+            subscribeForm.save()
+            #messages.success(request, 'Thamks for your Subscription!')
+            return HttpResponseRedirect(request.path_info)
+        else:
+            #messages.error(request, 'Invalid')
+            return HttpResponseRedirect(request.path_info)
+
+
     content = {
         'testimonies': recent_testimony,
-        'askedQuestions': askedQuestions,
+        'askedQuestions': asked_questions,
+        'form': subscribeForm,
+
 
         #category count
         'salvation_cat_count': salvation_cat.count,
@@ -387,10 +466,23 @@ def others(request):
 
 def detailedPage(request, id, slug):
     post = get_object_or_404(newTestimonies, id=id, slug=slug)
-    all = newTestimonies.objects.all().order_by('-id')[:3]
+    all_testimony = newTestimonies.objects.filter(approved=True).order_by('-id')[:3]
+
+    subscribeForm = subscribeForms(request.POST or None)
+    if 'email' in request.POST:
+        if subscribeForm.is_valid:
+            subscribeForm.save()
+            #messages.success(request, 'Thamks for your Subscription!')
+            return HttpResponseRedirect(request.path_info)
+        else:
+            #messages.error(request, 'Invalid')
+            return HttpResponseRedirect(request.path_info)
+
     content = {
         'Post':post,
-        'all':all,
+        'all':all_testimony,
+        'form': subscribeForm,
+
         'pageLink': request.build_absolute_uri(),
     }
     return render(request, 'detailed-single.html', content)
@@ -408,8 +500,20 @@ def search(request):
     else:
         pass
 
+    subscribeForm = subscribeForms(request.POST or None)
+    if 'email' in request.POST:
+        if subscribeForm.is_valid:
+            subscribeForm.save()
+            #messages.success(request, 'Thamks for your Subscription!')
+            return HttpResponseRedirect(request.path_info)
+        else:
+            #messages.error(request, 'Invalid')
+            return HttpResponseRedirect(request.path_info)
+
+
     content={
         'post_result': post_list,
+        'form': subscribeForm,
         'keyword': query_search,
     }
     return render(request, 'search_result.html', content)
