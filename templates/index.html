@@ -198,12 +198,12 @@
                     </span>
                   
                     <div class="lh-content">
-                      <h3><a href="detailed/{{testimony.id}}/{{testimony.slug}}/">{{testimony.title}}</a></h3>
+                      <h3><a href="/detailed/{{testimony.id}}/{{testimony.slug}}/">{{testimony.title}}</a></h3>
                       <p>by : <span style="font-weight: bold;">{{testimony.author}}</span></p>
-                      <!-- <p>
-                        <span class="icon-visibility text-success"></span>
-                        (3 views)</span>
-                      </p> -->
+                      <p>
+                        <span class="icon-comment text-success"></span>
+                        <a href="/detailed/{{testimony.id}}/{{testimony.slug}}/#disqus_thread">Join the Discussion</a></span>
+                      </p>
                     </div>
                   </div>
                   {% endif %}
@@ -384,6 +384,7 @@
   </div>
 </footer>
 </div>
+<script id="dsq-count-scr" src="//apostolictestimony.disqus.com/count.js" async></script>
 
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>

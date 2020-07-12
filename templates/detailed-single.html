@@ -138,9 +138,7 @@
                     <li style="margin-left: 20px;margin-top: 20px; font-weight: bold;">
                       {{Post.author}}
                     </li>
-                    <li style="margin-left: 20px;margin-top: 20px; font-weight: bold;">
-                      <span class="icon-visibility"> <span></span></span>
-                    </li>
+                    
                 </ul>
               </div>
               <!--Social media share link-->
@@ -167,7 +165,7 @@
             <!-- comment section -->
             <section name='comment-disclaimer'>
               <div class="card alert alert-warning">
-                <p>christaintestimony uses a third party commenting system which help us to track and manage comments made on every page</p>
+                <p>Apostolic Testimony uses a third party commenting system which help us to track and manage comments made on every page you may need to create a disqus account in just a few clicks</p>
               </div>
             </section>
             <section comment-section>
@@ -188,7 +186,7 @@
                 
                 (function () { // DON'T EDIT BELOW THIS LINE
                   var d = document, s = d.createElement('script');
-                  s.src = 'https://christaintestimony-2.disqus.com/embed.js'; //adegiteadekunle24@gmail.com
+                  s.src = 'https://apostolictestimony.disqus.com/embed.js'; //adegiteadekunle24@gmail.com
                   s.setAttribute('data-timestamp', +new Date());
                   (d.head || d.body).appendChild(s);
                 })();
@@ -211,8 +209,9 @@
                 <h3><a href="{% url 'index' %}detailed/{{all_post.id}}/{{all_post.slug}}/">{{all_post.title}}</a></h3>
                 <p><span style="font-weight: bold;">{{all_post.author}}</span> <span>On {{all_post.date | date}}</span></p>
                 <p>
-                  <span class="icon-visibility text-success"></span>
-                  (3 views)</span>
+                  <span class="icon-comment text-success"></span>
+                  
+                  <a href="/detailed/{{all_post.id}}/{{all_post.slug}}/#disqus_thread">Join the Discussion</a></span>
                 </p>
               </div>
             </div>

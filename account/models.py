@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 class publicUser(models.Model):
     user = models.OneToOneField(User, verbose_name="", null=True, on_delete=models.CASCADE)
     profile_img = models.ImageField(upload_to='images', height_field=None, width_field=None, max_length=None, null=True, blank=True)
-    username = models.CharField(max_length=150)
-    gender = models.CharField(max_length=50)
-    city = models.CharField(max_length=150)
-    country = models.CharField(max_length=150)
+    username = models.CharField(max_length=150, null=True, blank=True)
+    gender = models.CharField(max_length=50, null=True, blank=True)
+    city = models.CharField(max_length=150, null=True, blank=True)
+    country = models.CharField(max_length=150, null=True, blank=True)
     def __str__(self):
         return '{}'.format(self.user)
 

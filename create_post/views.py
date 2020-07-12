@@ -14,7 +14,11 @@ def create_post(request):
     if request.method == 'POST':
         if create_form.is_valid():
             create_form.instance.userId = '{}'.format(request.user.id)
-            create_form.instance.author_img = request.user.publicuser.profile_img.url
+            if create_form.instance.author_img:
+                create_form.instance.author_img = request.user.publicuser.profile_img.url
+            else:
+                create_form.instance.author_img = ''
+
             #create_form.instance.author = '{} {}'.format(request.user.first_name, request.user.last_name)
             if create_form.instance.setNameToAnonymous == False:
                 create_form.instance.author = '{} {}'.format(request.user.first_name, request.user.last_name)
