@@ -212,7 +212,7 @@ django_heroku.settings(locals())
 #     api_secret="qvODORhvVicvB-iWyU4z8C9SLDA"
 # )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '3099340866779757'
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ['SOCIAL_AUTH_FACEBOOK_KEY']
 #os.environ['SOCIAL_AUTH_FACEBOOK_KEY']  # App ID
  
 SOCIAL_AUTH_FACEBOOK_SECRET = 'a4481fccc7484aff8c9559a3246e18e1'
