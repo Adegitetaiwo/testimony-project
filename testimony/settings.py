@@ -28,11 +28,11 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG_DEVELOPMENT
-#DEBUG = True
+DEBUG = False
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG_PRODUCTION
-DEBUG = os.environ['DJANGO_DEBUG']
+#DEBUG = os.environ['DJANGO_DEBUG']
 
 
 ALLOWED_HOSTS = ['apostolictestimony.herokuapp.com']
