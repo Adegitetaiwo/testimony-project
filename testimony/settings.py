@@ -34,7 +34,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # DEBUG_PRODUCTION
 DEBUG = False
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['apostolictestimony.herokuapp.com']
 
 
 # Application definition
