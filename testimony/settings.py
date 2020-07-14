@@ -27,9 +27,14 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'False'
+# DEBUG_DEVELOPMENT
+#DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG_PRODUCTION
+DEBUG = False
+
+ALLOWED_HOSTS = ['apostolictestimony']
 
 
 # Application definition

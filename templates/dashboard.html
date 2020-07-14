@@ -24,6 +24,33 @@
 <link rel="stylesheet" href="{% static 'main_dash.css' %}" >
 <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 <link rel="stylesheet" href="{% static 'fonts/icomoon/demo-files/demo.css' %}">
+
+<style>
+    /* screen equal or less than 762px */
+@media (max-width: 766px){
+  .small_screen{
+      display: block;
+      margin-left: 20px;
+  }
+
+  .large_screen{
+      display: none;
+  }
+      }
+
+/* screen greater than 686px */
+
+@media (min-width: 766.55px){
+  .large_screen{
+      display: block;
+  }
+
+  .small_screen{
+      display: none;
+  }
+}
+</style>
+
 </head>
 <body>
     <!--Facebook Share button -->
@@ -33,8 +60,8 @@
 
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
-            <div class="app-header__logo">
-                <div style="font-weight: bold;font-family:Forte;font-size: 22px;">Apostolic Testimony</div>
+            <div class="app-header__logo ">
+                <div class="large_screen" style="font-weight: bold;font-family:Forte;font-size: 22px;">Apostolic Testimony</div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -57,7 +84,7 @@
                             </button>
                         </li>
                         <li style="margin-top: 15px;margin-left: 19px;">
-                            <div style="font-weight: bold;font-family:Forte;font-size: 17px;">Apostolic Testimony</div>
+                            <div class="small_screen" style="font-weight: bold;font-family:Forte;font-size: 15px;">Apostolic Testimony</div>
                         </li>
                     </ul>
                 </div>
