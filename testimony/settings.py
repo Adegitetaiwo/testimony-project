@@ -33,7 +33,7 @@ DEBUG = False
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG_PRODUCTION
 #DEBUG = os.environ['DJANGO_DEBUG']
-
+ADMINS = [('ADEGITE', 'adegitetaiwo24@gmail.com')]
 
 ALLOWED_HOSTS = ['www.apostolictestimony.herokuapp.com/']
 
