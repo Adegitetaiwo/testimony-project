@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',  # django social login
     'ckeditor',
+    'sentry_sdk',
     'error_handling', #error handling
     'main_app',
     'subscribe',
