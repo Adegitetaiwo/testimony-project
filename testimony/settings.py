@@ -35,7 +35,7 @@ DEBUG = False
 #DEBUG = os.environ['DJANGO_DEBUG']
 ADMINS = [('ADEGITE', 'adegitetaiwo24@gmail.com')]
 
-ALLOWED_HOSTS = ['www.apostolictestimony.herokuapp.com/']
+ALLOWED_HOSTS = ['.apostolictestimony.com']
 
 
 # Application definition
