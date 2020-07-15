@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from account.models import publicUser
 from tinymce.models import HTMLField
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 Choise = (
@@ -21,7 +22,7 @@ class newTestimonies(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(default="", editable=False)
     category = models.CharField(max_length=150, choices=Choise)
-    body = HTMLField()
+    body = RichTextField()
     author = models.CharField(max_length=50)
     author_img = models.CharField(max_length=500, null=True, blank=True)
     email = models.EmailField(max_length=254)

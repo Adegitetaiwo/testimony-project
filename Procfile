@@ -1,1 +1,1 @@
-web: gunicorn testimony.wsgi
+web: gunicorn testimony.wsgi —-log-file -
