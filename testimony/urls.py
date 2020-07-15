@@ -24,7 +24,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('tinymce/', include('tinymce.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),  # <-- django social authentication
     path('', include('main_app.urls')), 
     path('', include('subscribe.urls')),
