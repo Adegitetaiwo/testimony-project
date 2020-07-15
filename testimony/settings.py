@@ -35,7 +35,7 @@ DEBUG = False
 #DEBUG = os.environ['DJANGO_DEBUG']
 
 
-ALLOWED_HOSTS = ['apostolictestimony.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
