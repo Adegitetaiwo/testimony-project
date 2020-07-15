@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
 from account.models import publicUser
-from tinymce.models import HTMLField
 from ckeditor.fields import RichTextField
 # Create your models here.
 

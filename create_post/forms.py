@@ -1,6 +1,5 @@
 from django import forms
 from main_app.models import newTestimonies
-from tinymce.widgets import TinyMCE
 from ckeditor.widgets import CKEditorWidget
 
 
