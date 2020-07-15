@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 import os
 from django.contrib import messages
 import django_heroku
@@ -33,9 +35,11 @@ DEBUG = False
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG_PRODUCTION
 #DEBUG = os.environ['DJANGO_DEBUG']
-ADMINS = [('ADEGITE', 'adegitetaiwo24@gmail.com')]
+ADMINS = [
+    ('Adegite Taiwo', 'adegitetaiwo24@gmail.com'),
+]
 
-ALLOWED_HOSTS = ['.apostolictestimony.com']
+ALLOWED_HOSTS = ['.herokuapp.com']
 
 
 # Application definition
@@ -49,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',  # django social login
     'ckeditor',
+    'error_handling', #error handling
     'main_app',
     'subscribe',
     'create_post',
@@ -253,6 +258,17 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+#error handing
+
+sentry_sdk.init(
+    dsn="https://e433a9c8018e481585c07ddb20409216@o420940.ingest.sentry.io/5339978",
+    integrations=[DjangoIntegration()],
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
 
 
 # Static files (CSS, JavaScript, Images)
