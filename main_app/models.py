@@ -45,7 +45,7 @@ class newTestimonies(models.Model):
 
 class askedQuestion(models.Model):
     question = models.CharField(max_length=150)
-    answer = HTMLField()
+    answer = RichTextField()
 
     def __str__(self):
         return '{}'.format(self.question)
@@ -56,11 +56,10 @@ class askedQuestion(models.Model):
 
 class bibleQuote(models.Model):
     verse = models.CharField(max_length=150)
-    quote = HTMLField()
+    quote = RichTextField()
 
     def __str__(self):
         return '{}'.format(self.verse)
 
     class Meta:
         verbose_name_plural = 'Bible Quote Header'
-    
