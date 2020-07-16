@@ -39,7 +39,7 @@ ADMINS = [
     ('Adegite Taiwo', 'adegitetaiwo24@gmail.com'),
 ]
 
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['apostolictestimony.herokuapp.com']
 
 
 # Application definition
