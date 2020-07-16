@@ -2,4 +2,3 @@
 env
 git remote add origin https://github.com/Adegitetaiwo/testimony-project.git
 debug.log
-staticfiles/
