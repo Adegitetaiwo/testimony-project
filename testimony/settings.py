@@ -343,10 +343,10 @@ django_heroku.settings(locals())
 #     api_secret="qvODORhvVicvB-iWyU4z8C9SLDA"
 # )
 
-SOCIAL_AUTH_FACEBOOK_KEY = os.environ['SOCIAL_AUTH_FACEBOOK_KEY']
+SOCIAL_AUTH_FACEBOOK_KEY = '3099340866779757'
 #os.environ['SOCIAL_AUTH_FACEBOOK_KEY']  # App ID
  
-SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['SOCIAL_AUTH_FACEBOOK_SECRET']
+SOCIAL_AUTH_FACEBOOK_SECRET = 'a4481fccc7484aff8c9559a3246e18e1'
 #os.environ['SOCIAL_AUTH_FACEBOOK_SECRET']  # App Secret
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -354,7 +354,7 @@ EMAIL_HOST_USER = 'apostolictestimony@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_HOST_PASSWORD = 'apostolictestimony2020'
 #os.environ['EMAIL_HOST_PASSWORD']
 
 #from django.core.mail import BadHeaderError, send_mail
