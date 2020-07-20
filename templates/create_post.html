@@ -25,6 +25,11 @@
     <link rel="stylesheet" href="{% static "css/rangeslider.css" %}">
 
     <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <style>
+        *{
+            scroll-behavior: smooth;
+        }
+    </style>
     <!-- for Tinymce editor to show we put the media contol -->
     {{ create_new_testimony.media }}
 </head>
@@ -104,35 +109,40 @@
                         <div class="col-md-8 text-center">
                             <h1 class="mt-4" data-aos="fade-up">Testify to the Glory of God</h1>
                         </div>
-                        <div class="card mb-12 alert alert-success" style="color: black;" data-aos="fade-up" id="welcome">
+                        <div data-aos="fade-up" id="welcome">
                             <div class="card-body">
-                                <p class="mb-0 justify-text-center" data-aos="fade-up" style="font-family:Arial rounded mt; color: black !important; font-size: 17px;">Welcome friend, Congratulation
-                                    on your decision in writing down your testimony for it is a ministarial tool to put the
-                                    devil to shame, to give God all glory in appreciation and as a tool for encouraging fellow christians in
-                                    Christ Jesus .</p>
-                                <p class="mb-0 justify-text-center" data-aos="fade-up" style="font-family:Arial rounded mt; color: black !important;font-size: 17px;">So we Congratulate you once
-                                    again and encourage you to write to the glorification of Christ Jesus and not for your glory.</p>
+                                <p class="mb-0 justify-text-center" data-aos="fade-up" 
+                                    style="font-family:Arial rounded mt; color: white !important; font-size: 17px;">
+                                    You're welcome friend,  
+                                </p>
+                                <p class="mb-0 justify-text-center" data-aos="fade-up" 
+                                    style="font-family:Arial rounded mt; color: white !important;font-size: 17px;">
+                                    greetings from our Team, please we encourage you to write to the glory of Christ
+                                    Jesus and not yours.
+                                </p>
                             </div>
                         
                             <div class="mt-2 mb-3">
-                                <button id="create_button">Click to continue</button>
+                                <a href="#title_top"><button id="create_button">Click to continue</button></a>
                             </div>
                         </div>
 
                         <!-- Alert message begin  -->
                         {% for message in messages %}
                         <div class="alert {{message.tags}} alert-dismissible fade show" role="alert"">
-                            <ul style=" display:flex; list-style: none;">
-                            <li style="margin-left:20px;">
+                            <ul style=" list-style: none;">
+                            <li style="margin-left:20px; text-align: center; margin: auto;">
                                 <!--error icon-->
                                 {% if message.tags == "alert-danger" %}
                                 <span class="icon icon-warning"></span>
                                 {% endif %}
                                 <!--success icon-->
                                 {% if message.tags == 'alert-success' %}
-                                <span style="font-size: 20px; float: left;" class="icon icon-check"></span>
+                                <span style="font-size: 13px; float: left;" class="icon icon-check"></span>
+                                
                                 {% endif %}
                             </li>
+                            <br>
                             <li id='post_success'>{{message}}</li>
                             
                         </div>
@@ -152,63 +162,34 @@
     <div class="site-section bg-light">
         <div class="container">
             <div class="row">
+                <a name="title_top"></a>
+
                 <div class="col-md-12 mb-12" data-aos="fade">
-
-
 
                     <form class="p-5 bg-white" method="POST" id="create_form">
                         {% csrf_token %}
-
                         <div class="row form-group">
-                            <div class="col-md-12 mb-3 mb-md-0">
-                                <label class="text-black" for="fname">Title</label>
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <label class="text-black" for="fname">Title : Describe your Testimony</label>
                                 {{create_new_testimony.title}}
                             </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3 mb-md-0">
                                 <label class="text-black" for="lname">Category</label>
                                 <div id="lname" class="form-control" placeholder="salvation, health, addiction, finance, protection, others">
                                     {{create_new_testimony.category}}
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <label class="text-black" for="email">Email</label>
-                                {{create_new_testimony.email}}
-                            </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="text-black" for="message">Body</label>
+                                <br>
                                 {{create_new_testimony.body}}
                             </div>
                         </div>
 
                         <hr class="mt-3 borderline">
-                        <p class="mt-3" style="text-align: center;">Some little Settings</p>
-                        <!-- <div>
-                            <p>Set my <span style="font-weight: bold;">profile picture</span> to "Anonymous"</p>
-                            Off
-                            <label class="switch">
-                                <input type="checkbox" name="" id="">
-                                <span class="slider round"></span>
-                            </label>
-                            On
-                        </div> -->
-                        <div>
-                            <p>Name : Use my Username Instead</p>
-                            Off
-                            <label class="switch">
-                                {{create_new_testimony.setNameToAnonymous}}
-                                <span class="slider round"></span>
-                            </label>
-                            On
-                        </div>
-                        <hr class="mt-3 borderline">
-
                         
-
                         <div class="row form-group">
                             <div class="col-md-12 mt-3">
                                 <input type="submit" value="Submit Testimony" class="btn btn-primary py-2 px-4 text-white" style="width: 100%;">

@@ -1,12 +1,9 @@
-{% extends 'base.html' %}
 {% load static %}
-
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title> 400 error!! | ApostolicTestimony </title>
+    <title> 400 Bad Request | ApostolicTestimony </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -64,9 +61,53 @@
     </header>
 
     <section class="message-sent container">
-        <h1>400 Bad Request - from Apostolic Testimony</h1>
-        
+        <video src="{% static "media/giphy-somwthomg.gif" %}" autoplay loop style="position: fixed;
+        right: 0;bottom: 0;min-width: 100%;min-height: 100%;"></video>
+        <h4 style="position: fixed;
+        right: 0;bottom: 0;">400 Bad Request</h4>
+
     </section>
 
-    {% endblock %}
+
     </div>
+    <script id="dsq-count-scr" src="//apostolictestimony.disqus.com/count.js" async></script>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/rangeslider.min.js' %}"></script>
+    <script src="{% static 'js/alert_handling.js' %}"></script>
+
+
+
+    <script src="{% static 'js/typed.js' %}"></script>
+    <script>
+
+        let typed = new Typed('.typed-words', {
+            strings: ["a tool to put the devil to shame.",
+                "the physical prove of God's Love!",
+                " an Encouragment to others.",
+                " a reminder of God's Might!"],
+            typeSpeed: 60,
+            backSpeed: 80,
+            backDelay: 400,
+            startDelay: 100,
+            loop: true,
+            showCursor: true,
+            // shuffle: true
+        });
+    </script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

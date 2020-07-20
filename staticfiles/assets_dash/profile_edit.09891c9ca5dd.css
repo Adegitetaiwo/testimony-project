@@ -1,0 +1,35 @@
+.text_input input{
+    text-align: center;
+    width: 250px;
+    height: 30px;
+    border: 1px solid #3f6ad8;
+}
+
+.profile_pic img{
+    width: 140px;
+    border-radius: 50%;
+}
+#img_boder{
+    border: 2px solid #3f6ad8;
+}
+
+.profile_pic input{
+    width: 100px;
+    height: 30px;
+    margin-bottom: 20px;
+    
+}
+
+.submit-btn{
+    margin-top: 50px;
+    width: 200px;
+    height: 50px;
+    background: #3f6ad8 ;
+    color: white;
+    font-family: arial rounded mt;
+    border-radius: 30px;
+}
+
+#profile_img-clear_id{
+    width: 15px;
+}

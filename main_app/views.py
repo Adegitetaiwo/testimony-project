@@ -489,7 +489,7 @@ def detailedPage(request, id, slug):
 
 #search view
 def search(request):
-    post_list = newTestimonies.objects.all()
+    post_list = newTestimonies.objects.filter(approved=True)
     query_search = request.POST['search']
     if query_search:
         post_list = post_list.filter(

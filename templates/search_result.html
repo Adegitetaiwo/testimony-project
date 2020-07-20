@@ -95,10 +95,12 @@
                                 {% for testimony in post_result %}
                                 <div class="d-block d-md-flex listing-horizontal">
 
-                                    <span class="badge badge-pill badge-secondary ml-4 mt-3"
-                                        style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;">
-                                        {{testimony.category}}
-                                    </span>
+                                    <div>
+                                        <span class="badge badge-pill badge-secondary ml-4 mt-3 mr-4"
+                                            style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;" id="cat_tag_small">
+                                            {{testimony.category}}
+                                        </span>
+                                    </div>
 
                                     <div class="lh-content">
                                         <h3><a
@@ -106,9 +108,16 @@
                                         </h3>
                                         <p>{{testimony.author}}</p>
                                         <p>
-                                            <span class="icon-visibility text-success"></span>
-                                            (3 views)</span>
+                                            <span class="icon-comment text-success"></span>
+                                            <a href="/detailed/{{testimony.id}}/{{testimony.slug}}/#disqus_thread">Join the Discussion</a></span>
                                         </p>
+                                    </div>
+
+                                    <div>
+                                        <span class="badge badge-pill badge-secondary ml-4 mt-3 mr-4"
+                                            style="background: #7971ea; color: white;width: 8rem; height: 1.4rem;" id="cat_tag_large">
+                                            {{testimony.category}}
+                                        </span>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -117,7 +126,7 @@
                                     <div class="d-block d-md-flex listing-horizontal card  alert-warning">
                                         <div class="lh-content">
                                             <h3>Sorry there is no testimony with keyword <span style="text-decoration: underline;">{{keyword}}</span></h3>
-                                            <p>Or maybe God has given you a Testimony, we with other belivers will like to hear from you and by God's grace be Encourage through your Testimony, please</p>
+                                            <p>Or maybe God has given you a Testimony, we and other belivers will like to hear from you and by God's grace be Encourage through your Testimony, please</p>
                                             <a href="{% url 'create_post' %}">Click Here</a>
                                         </div>
                                     </div>

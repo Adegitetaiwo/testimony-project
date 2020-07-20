@@ -5,7 +5,6 @@ from ckeditor.widgets import CKEditorWidget
 
 
 CHOICES = (
-    ('choose', "Choose"),
     ('salvation', 'Salvation'), 
     ('health', 'Health'),
     ('addiction', 'Addiction'),
@@ -23,8 +22,7 @@ class createPostForms(forms.ModelForm):
                                                                  'placeholder': "Full narration of your testimony"}))
     author =forms.CharField(max_length= 200, required=False)
     author_img = forms.ImageField(required=False)
-    email = forms.CharField(max_length=300, required=True, widget=(forms.TextInput(attrs={'type':"email", 'id':"email", 'class':"form-control", 'placeholder':"an email to track your testimony status"})))
-    setNameToAnonymous = forms.BooleanField(required=False, widget=(forms.TextInput(attrs={'type':'checkbox'})))
+    email = forms.CharField(max_length=300, required=False, widget=(forms.TextInput(attrs={'type':"email", 'id':"email", 'class':"form-control", 'placeholder':"an email to track your testimony status"})))
     class Meta:
         model = newTestimonies
         fields = '__all__'

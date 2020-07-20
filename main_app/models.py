@@ -5,7 +5,6 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 
 Choise = (
-    ('choose', 'Choose'),
     ('salvation', 'Salvation'),
     ('health', 'Health'),
     ('addiction', 'Addiction'),
@@ -25,7 +24,6 @@ class newTestimonies(models.Model):
     author = models.CharField(max_length=50)
     author_img = models.CharField(max_length=500, null=True, blank=True)
     email = models.EmailField(max_length=254)
-    setNameToAnonymous = models.BooleanField(blank=True, null=True, default=False)
     approved = models.BooleanField(default=False, blank=True, null=True)
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
     created = models.DateTimeField(auto_now=False, auto_now_add=True)

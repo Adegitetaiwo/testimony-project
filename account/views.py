@@ -44,11 +44,11 @@ def login(request):
         user = auth.authenticate(username=email, password=password)
         if user is not None:
             auth.login(request, user)
-            messages.success(request, 'You are Logined in')
+            # messages.success(request, 'You are Logined in')
             if 'next' in request.POST:
                 return HttpResponseRedirect(request.POST.get('next'))
             else:
-                return HttpResponseRedirect(request.path_info)
+                return HttpResponseRedirect('/dashboard')
         else:
             messages.error(request, 'Invalid Credentials')
             return HttpResponseRedirect(request.path_info)
