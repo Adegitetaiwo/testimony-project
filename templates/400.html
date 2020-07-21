@@ -23,6 +23,16 @@
     <link rel="stylesheet" href="{% static "css/rangeslider.css" %}">
 
     <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173198413-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-173198413-1');
+    </script>
+
 
 </head>
 
@@ -61,10 +71,25 @@
     </header>
 
     <section class="message-sent container">
-        <img src="{% static "media/giphy-somwthomg.gif" %}" autoplay loop style="position: fixed;
-        right: 0;bottom: 0;min-width: 100%;min-height: 100%;"></img>
-        <h4 style="position: fixed;
-        right: 0;bottom: 0;"color: white;>400 Bad Request</h4>
+        <div class="site-blocks-cover overlay" style="background-image: url({% static 'media/giphy-somwthomg.gif' %});"
+            data-aos="fade" data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center justify-content-center text-center">
+        
+                    <div class="col-md-10">
+        
+        
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-md-8 text-center">
+                                <h1 data-aos="fade-up">400 - Bad Request<span class="typed-words"></span></h1>
+                                <p>Something went wrong</p>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </section>
 
@@ -87,24 +112,6 @@
     <script src="{% static 'js/alert_handling.js' %}"></script>
 
 
-
-    <script src="{% static 'js/typed.js' %}"></script>
-    <script>
-
-        let typed = new Typed('.typed-words', {
-            strings: ["a tool to put the devil to shame.",
-                "the physical prove of God's Love!",
-                " an Encouragment to others.",
-                " a reminder of God's Might!"],
-            typeSpeed: 60,
-            backSpeed: 80,
-            backDelay: 400,
-            startDelay: 100,
-            loop: true,
-            showCursor: true,
-            // shuffle: true
-        });
-    </script>
 
     <script src="{% static 'js/main.js' %}"></script>
 

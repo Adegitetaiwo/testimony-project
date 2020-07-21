@@ -2,7 +2,7 @@
     text-align: center;
     width: 250px;
     height: 30px;
-    border: 1px solid #3f6ad8;
+    border: 1px solid #7971ea;
 }
 
 .profile_pic img{
@@ -10,7 +10,7 @@
     border-radius: 50%;
 }
 #img_boder{
-    border: 2px solid #3f6ad8;
+    border: 2px solid #7971ea;
 }
 
 .profile_pic input{
@@ -24,7 +24,7 @@
     margin-top: 50px;
     width: 200px;
     height: 50px;
-    background: #3f6ad8 ;
+    background: #7971ea ;
     color: white;
     font-family: arial rounded mt;
     border-radius: 30px;

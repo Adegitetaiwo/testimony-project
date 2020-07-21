@@ -26,6 +26,16 @@
     <link rel="stylesheet" href="{% static "css/rangeslider.css" %}">
 
     <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173198413-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-173198413-1');
+    </script>
+
 
 </head>
 
@@ -55,7 +65,7 @@
                         <nav class="site-navigation position-relative text-right" role="navigation">
             
                             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                                <li class="active"><a href="{% url 'index' %}"><span>Home</span></a></li>
+                                <li class=""><a href="{% url 'index' %}"><span>Home</span></a></li>
                                 <li><a href="{% url 'about' %}"><span>About</span></a></li>
                                 <li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
                                 <li><a href="{% url 'create_post' %}"><span>Add testimony +</span></a></li>

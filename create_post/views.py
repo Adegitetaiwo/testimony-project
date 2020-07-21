@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from account.views import User
 from django.contrib import messages
 from account.models import publicUser
+from django.shortcuts import render, get_object_or_404
+from django.core.exceptions import  PermissionDenied
+
 
 # Create your views here.
 
@@ -38,3 +41,15 @@ def create_post(request):
             'create_new_testimony': create_form,
         }
         return render(request, 'create_post.html', content)
+
+
+
+def delete_post(request, id, slug):
+    instance = get_object_or_404(newTestimonies, id=id, slug=slug)
+    if '{} {}'.format(request.user.first_name, request.user.last_name) == instance.author:
+        instance.delete()
+        # messages.success(request, 'Done')
+        return HttpResponseRedirect('/dashboard')
+    else:
+        raise PermissionDenied
+        return HttpResponseRedirect('/dashboard')

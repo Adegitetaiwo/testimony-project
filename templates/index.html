@@ -23,6 +23,16 @@
     <link rel="stylesheet" href="{% static "css/rangeslider.css" %}">
 
     <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173198413-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-173198413-1');
+    </script>
+
 
   </head>
   <body>
@@ -98,7 +108,7 @@
             
             <div class="row justify-content-center mb-4">
               <div class="col-md-8 text-center">
-                <h1 data-aos="fade-up">My Testmony <span class="typed-words"></span></h1>
+                <h1 data-aos="fade-up">My Testimony ; <span class="typed-words"></span></h1>
                 <p data-aos="fade-up" data-aos-delay="100">Bible Quote : {{bibleQuotes.quote | safe}}</p>
               </div>
             </div>
@@ -106,7 +116,10 @@
           </div>
         </div>
       </div>
-    </div>  
+    </div>
+      
+    </article>
+    
 
     <!--testimony Categories-->
     <div class="site-section">
@@ -171,8 +184,8 @@
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Share, Be Encouraged</h2>
-            <p class="color-black-opacity-5">share, Encourage  &amp; be inspired</p>
+            <h2 class="font-weight-light text-primary">Share, Encouraged &amp; be inspired</h2>
+            <p class="color-black-opacity-5">inspired ? Let others know about God's love </p>
           </div>
         </div>
 

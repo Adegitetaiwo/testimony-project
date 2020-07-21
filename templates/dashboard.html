@@ -11,6 +11,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
+    <style>
+        #pop_up{
+            position: absolute;
+            border: 2px solid #7971ea;
+            top:-60px;
+            /* top: 40%; */
+            left: 50%;
+            right: 50%;
+            animation-name: popUp;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes popUp {
+            0% {opacity: 0;}
+            100% {opacity: 1;
+                   top: 40%; }
+        }
+        .pop_up_btn {
+            width: 60px;
+            height: 40px;
+            background: rgb(248, 74, 74);
+            color: white !important;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1248px){
+            #pop_up {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            right: 50%;
+            }
+        }
+
+        @media (max-width: 994.5px){
+            #pop_up {
+            position: absolute;
+            top: 40%;
+            left: 35%;
+            /* right: 50%; */
+            /* bottom: auto; */
+            }
+            #largeTitle {
+                display: none;
+            }
+        }
+
+        @media (max-width: 778.5px){
+            #pop_up {
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            /* right: 50%; */
+            /* bottom: auto; */
+            }
+        }
+        @media (max-width: 543.5px){
+            #pop_up {
+            position: absolute;
+            top: 40%;
+            left: 24%;
+            /* right: 50%; */
+            /* bottom: auto; */
+            }
+        }
+        @media (max-width: 440.5px){
+            #pop_up {
+            position: absolute;
+            top: 40%;
+            left: 16%;
+            /* right: 50%; */
+            /* bottom: auto; */
+            }
+        }
+
+        @media (max-width: 389.5px){
+            #pop_up {
+            position: absolute;
+            top: 40%;
+            left: 12%;
+            /* right: 50%; */
+            /* bottom: auto; */
+            }
+        }
+        
+    </style>
     <!--
     =========================================================
     * ArchitectUI HTML Theme Dashboard - v1.0.0
@@ -24,6 +112,16 @@
 <link rel="stylesheet" href="{% static "main_dash.css" %}" >
 <link rel="stylesheet" href="{% static "fonts/icomoon/style.css" %}">
 <link rel="stylesheet" href="{% static "fonts/icomoon/demo-files/demo.css" %}">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-173198413-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-173198413-1');
+</script>
+
 
 <!-- <style>
     /* screen equal or less than 762px */
@@ -61,7 +159,7 @@
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo ">
-                <div class="large_screen" style="font-weight: bold;font-family:Forte;font-size: 22px;">Apostolic Testimony</div>
+                <div class="large_screen" style="font-weight: bold;font-family:Forte;font-size: 22px;" id="largeTitle">Apostolic Testimony</div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -106,9 +204,9 @@
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                             {% if request.user.publicuser.profile_img %}
-                                            <img width="53" height="50" class="rounded-circle" src="{{request.user.publicuser.profile_img.url}}" alt="" style="border: 2px solid #3f6ad8;">
+                                            <img width="53" height="50" class="rounded-circle" src="{{request.user.publicuser.profile_img.url}}" alt="" style="border: 2px solid #7971ea;">
                                             {% else %}
-                                            <img width="55" height="53" class="rounded-circle" src="{% static 'assets_dash/images/avatars/avatar.png' %}" alt="" style="border: 2px solid #3f6ad8;">
+                                            <img width="55" height="53" class="rounded-circle" src="{% static 'assets_dash/images/avatars/avatar.png' %}" alt="" style="border: 2px solid #7971ea;">
                                             {% endif %} 
                                         </a>
                                     </div>
@@ -121,6 +219,23 @@
                             </div>
                         </div>
                     </div>        </div>
+            </div>
+            <div id="pop_up" class="alert alert-light d-none" style="width: 300px; margin: auto;">
+                <p>
+                    Are you Sure you want to Delete this Testimony ?
+                </p>
+                <ul style="display: inline-flex;list-style: none;">
+                    <li>
+                        <a href="" id="pop_up_yes">
+                            <button  class="pop_up_btn">Yes</button>
+                        </a>
+                    </li>
+                    <li style="margin-left: 47px;">
+                        <a href="" id="pop_up_no">
+                            <button  class="pop_up_btn">No</button>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>        
         <div class="ui-theme-settings">
@@ -262,6 +377,7 @@
                                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                                             <thead>
                                             <tr>
+                                                <th class="text-center">Delete</th>
                                                 <th class="text-center">#</th>
                                                 <th>Title</th>
                                                 <th class="text-center">Category</th>
@@ -272,6 +388,14 @@
                                             <tbody>
                                             {% for testimony in Testimonies %}
                                             <tr>
+                                                <td class="text-center text-muted" >
+                                                    {% if testimony.approved %}
+                                                    <p class="alert alert-light" style="cursor:not-allowed">disabled</p>
+                                                    {% else %}
+                                                    <a  href="" holdLink="/delete/{{testimony.id}}/{{testimony.slug}}" style="color: red;" class="icon-delete" id="icon-delete"></a>
+                                                    {% endif %}
+
+                                                </td>
                                                 <td class="text-center text-muted">#{{forloop.counter}}</td>
                                                 <td>
                                                     <div class="widget-content p-0">
@@ -312,6 +436,9 @@
                             </div>
                         </div>
                     </div>
+                    
+
+
                     <div class="app-wrapper-footer">
                         <div class="app-footer">
                             <div class="app-footer__inner">
@@ -327,11 +454,29 @@
                         </div>
                     </div>    </div>
                 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+                <a href="url" id="test"></a>
         </div>
     </div>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'assets_dash/scripts/main.js' %}"></script>
 <script type="text/javascript" src="{% static 'assets_dash/scripts/greeting.js' %}"></script>
 <script type="text/javascript" src="{% static 'fonts/icomoon/demo-files/demo.js' %}"></script>
+<script>
+    let popUp = document.getElementById('pop_up'),
+        popUpYesButton = document.getElementById('pop_up_yes'),
+        popUpNoButton = document.getElementById('pop_up_no')
+    $(document).on('click', '#icon-delete', (e)=>{
+        e.preventDefault()
+        popUp.classList.remove('d-none')
+        let url = $(e.currentTarget).attr('holdLink')
+        popUpYesButton.setAttribute('href', url)
+        popUpNoButton.addEventListener('click', (e)=> {
+            e.preventDefault()
+            popUp.classList.add('d-none')
+        })
+
+    })
+</script>
 </body>
 
 </html>

@@ -40,18 +40,21 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-
         user = auth.authenticate(username=email, password=password)
         if user is not None:
             auth.login(request, user)
             # messages.success(request, 'You are Logined in')
             if 'next' in request.POST:
+                next_param = request.POST.get('next')
                 return HttpResponseRedirect(request.POST.get('next'))
             else:
                 return HttpResponseRedirect('/dashboard')
         else:
             messages.error(request, 'Invalid Credentials')
-            return HttpResponseRedirect(request.path_info)
+            if request.POST.get('next'):
+                return HttpResponseRedirect(request.path_info + '?next={}'.format(next_param))
+            else:
+                return HttpResponseRedirect('/')
 
     else:
         return render(request, 'login.html')

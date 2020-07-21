@@ -25,6 +25,16 @@
     <link rel="stylesheet" href="{% static "main_dash.css" %}">
     <link rel="stylesheet" href="{% static "fonts/icomoon/demo-files/demo.css" %}">
     <link rel="stylesheet" href="{% static "assets_dash/profile_edit.css" %}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173198413-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-173198413-1');
+    </script>
+
 
 </head>
 
@@ -84,7 +94,7 @@
                                                 {% if request.user.publicuser.profile_img %} 
                                                 src="{{request.user.publicuser.profile_img.url}}" width="53" height="50" {% else %}
                                                 src="{% static 'images/avatar.png' %}"  width="55" height="53"{% endif %} 
-                                                style="border: 2px solid #3f6ad8;">
+                                                style="border: 2px solid #7971ea;">
                                                 
                                         </a>
                                     </div>
