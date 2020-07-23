@@ -16,6 +16,9 @@ import os
 from django.contrib import messages
 import django_heroku
 #from boto.s3.connection import S3Connection
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -52,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',  # django social login
+    'cloudinary', # cloudinary
     'ckeditor',
     'sentry_sdk',
     'error_handling', #error handling
@@ -336,11 +340,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # # Activate Django-Heroku.
 django_heroku.settings(locals())
 
-# cloudinary.config(
-#     cloud_name="afmdjango",
-#     api_key="155368314611262",
-#     api_secret="qvODORhvVicvB-iWyU4z8C9SLDA"
-# )
+cloudinary.config(
+    cloud_name="apostolic-testimony",
+    api_key="484956298328121",
+    api_secret="YJnCZz9LNbhRGj4UhbiP61gAZmU"
+)
 
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ['SOCIAL_AUTH_FACEBOOK_KEY']  # App ID
  

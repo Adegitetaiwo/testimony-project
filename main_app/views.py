@@ -5,6 +5,9 @@ from django.db.models import Q
 from subscribe.forms import subscribeForms
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # from urllib import quote_plus
 # Create your views here.
 

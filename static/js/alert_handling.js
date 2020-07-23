@@ -37,7 +37,7 @@ $(document).ready(()=>{
                     messageCard.classList.remove('alert-success')
                     messageCard.classList.add('alert-warning')
                     //set success text message
-                    message.textContent = 'Something went wrong please check your email is if it Valid'
+                    message.textContent = 'Something went wrong please check your email if it Valid'
                     messageIcon.className = 'icon icon-warning'
 
                 }
@@ -48,7 +48,7 @@ $(document).ready(()=>{
                 messageCard.classList.remove('alert-success')
                 messageCard.classList.add('alert-warning')
                 //set success text message
-                message.textContent = 'Something went wrong please check your email is if it Valid'
+                message.textContent = 'Something went wrong please check your Internet Connection'
                 messageIcon.className = 'icon icon-warning'
             },
         })
