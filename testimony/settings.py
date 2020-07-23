@@ -341,9 +341,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 django_heroku.settings(locals())
 
 cloudinary.config(
-    cloud_name="apostolic-testimony",
-    api_key="484956298328121",
-    api_secret="YJnCZz9LNbhRGj4UhbiP61gAZmU"
+    cloud_name = os.environ['cloud_name'],
+    api_key=os.environ['api_key'],
+    api_secret=os.environ['api_secret']
 )
 
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ['SOCIAL_AUTH_FACEBOOK_KEY']  # App ID
