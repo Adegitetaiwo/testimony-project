@@ -8,7 +8,6 @@ CHOICES = (
 )
 
 class updateProfile(forms.ModelForm):
-    profile_img = forms.ImageField(required=False)
     username = forms.CharField(required=False, widget=(forms.TextInput(attrs={'type':'text'})))
     gender = forms.ChoiceField(choices=CHOICES, required=False)
     city = forms.CharField(required=False, widget=(
