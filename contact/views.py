@@ -18,7 +18,7 @@ def contact(request):
             contact_form.save()
             messages.success(request, 'Thank You!, Your message has been recieved')
             send_mail('New Contact from Apostolictestimony', 'Hello Admin!, someone Contacted You throung the Contact form please check your dashboard', 
-                    'apostolictestimony@gmail.com', ['adegitetaiwo24@gmail.com'], fail_silently=True)
+                      'apostolictestimony@gmail.com', ['apostolictestimony@gmail.com'], fail_silently=True)
             return HttpResponseRedirect(request.path_info)
         else:
             messages.error(request, 'Invalid Form request')

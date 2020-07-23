@@ -8,6 +8,7 @@ from account.models import publicUser
 from django.shortcuts import render, get_object_or_404
 from django.core.exceptions import  PermissionDenied
 from account.forms import updateProfile
+from django.core.mail import BadHeaderError, send_mail
 
 
 # Create your views here.
@@ -35,6 +36,8 @@ def create_post(request):
                 create_form.save()
                 messages.success(
                     request, 'Thank you so much for your submission, may your testimony remain permanent in Jesus name! please check the status of your testimony through your user profile and also share your testimony to your friends. If you have any problem with activating your testimony please contact us through the contact form')
+                send_mail('New Testimony Submit from Apostolictestimony', 'Hello Admin!, someone has just submitted a testimony, please check your dashboard',
+                          'apostolictestimony@gmail.com', ['apostolictestimony@gmail.com'], fail_silently=True)
                 return HttpResponseRedirect(request.path_info)
             else:
                 messages.error(
