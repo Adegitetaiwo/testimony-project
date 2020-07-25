@@ -61,10 +61,10 @@ def index(request):
     if request.method == 'POST':
         if subscribeForm.is_valid:
             subscribeForm.save()
-            messages.success(request, 'Thamks for your Subscription!')
+            #messages.success(request, 'Thamks for your Subscription!')
             return HttpResponseRedirect(request.path_info)
         else:
-            messages.error(request, 'Invalid')
+            #messages.error(request, 'Invalid')
             return HttpResponseRedirect(request.path_info)
     
     content = {
