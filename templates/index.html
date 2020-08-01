@@ -119,12 +119,10 @@
         </div>
       </div>
     </div>
-      
-    </article>
     
 
     <!--testimony Categories-->
-    <div class="site-section">
+    <section class="site-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
@@ -177,17 +175,17 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     
 
 
-    <div class="site-section">
+    <section class="site-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Share, Encourage &amp; be inspired</h2>
-            <p class="color-black-opacity-5">inspired ? Let others know about God's love </p>
+            <h2 class="font-weight-light text-primary">Share, Encourage &amp; Be Inspired</h2>
+            <p class="color-black-opacity-5">Inspired ? Let others know about God's love </p>
           </div>
         </div>
 
@@ -247,7 +245,7 @@
                   {% endif %}
                 </div>
                 
-                <div class="col-12 text-center mt-5">
+                <nav class="col-12 text-center mt-5">
                   <p class="custom-pagination">
                     {% for page_number in paginator.page_range %}
                     
@@ -265,13 +263,12 @@
                     
                   </p>
                 </div>
-              </div>
+              </nav>
                
               
 
               
-              <div class="col-md-3 ml-auto">
-        
+              <aside class="col-md-3 ml-auto">
                 <div class="mb-5">
                   <h3 class="h5 text-black mb-3">In case you've not read</h3>
                   <ul class="list-unstyled">
@@ -280,20 +277,19 @@
                     {% endfor %}
                   </ul>
                 </div>
-        
-              </div>
+              </aside>
         
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="site-section">
+    <secton class="site-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Some Answered Question</h2>
+            <h2 class="font-weight-light text-primary">Some Answered Questions</h2>
             <p class="color-black-opacity-5">answers to questions you may want to ask</p>
           </div>
         </div>
@@ -316,24 +312,23 @@
             {% endfor %}
 
           </div>
-          
         </div>
         
       </div>
-    </div>
+    </secton>
     
-    <div class="py-5 bg-primary">
+    <secton class="py-5 bg-primary">
       <div class="container">
         <div class="row text-center">
           <div class="col-md-12">
             <h2 class="mb-2 text-white">Let's get started. Create your account</h2>
-            <p class="mb-4 lead text-white-opacity-05">we overcome the devil by our testimonies, you'll like to share a testimony to the world ?
-            it only takes few minute to setup you account</p>
+            <p class="mb-4 lead text-white-opacity-05">We overcome the devil by our testimonies, Would you like to share a testimony to the world ?
+            it only takes few minutes to setup your account</p>
             <p class="mb-0"><a href="{% url 'signUp' %}" class="btn btn-outline-white text-white btn-md font-weight-bold">Sign Up</a></p>
           </div>
         </div>
       </div>
-    </div>
+    </secton>
     
     
 <footer class="site-footer">
@@ -359,7 +354,7 @@
           </div>
 
           <div class="col-md-5">
-            <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
+            <h2 class="footer-heading mb-4">Subscribe For Update on Inspiring Testimonies</h2>
             <form method="post" id="subscribe_form">
               {% csrf_token %}
               <div class="input-group mb-3">

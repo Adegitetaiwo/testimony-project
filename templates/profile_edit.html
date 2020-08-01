@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Account Dashboard | myTestimony </title>
+    <title>Edit Profile | ApostolicTestimony </title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
@@ -27,7 +27,17 @@
     <link rel="stylesheet" href="{% static "main_dash.css" %}">
     <link rel="stylesheet" href="{% static "fonts/icomoon/demo-files/demo.css" %}">
     <link rel="stylesheet" href="{% static "assets_dash/profile_edit.css" %}">
+    <style>
+        @media (max-width: 994.5px){
+            
+            #largeTitle {
+                display: none;
+            }
+        }
+
+    </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173198413-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -44,7 +54,7 @@
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-                <div class="large_screen" style="font-weight: bold;font-family:Forte;font-size: 22px;">Apostolic Testimony</div>
+                <div class="large_screen" style="font-weight: bold;font-family:Forte;font-size: 22px;" id="largeTitle">Apostolic Testimony</div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
