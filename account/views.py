@@ -55,7 +55,7 @@ def login(request):
             if request.POST.get('next'):
                 return HttpResponseRedirect(request.path_info + '?next={}'.format(next_param))
             else:
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect(request.path_info)
 
     else:
         return render(request, 'login.html')
