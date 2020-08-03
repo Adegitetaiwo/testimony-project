@@ -27,8 +27,8 @@ def create_post(request):
                 #save profile image
                 update_profile.save()
 
-                if request.user.publicuser.profile_img.url:
-                    create_form.instance.author_img = request.user.publicuser.profile_img.url
+                if request.user.publicuser.profile_img:
+                    create_form.instance.author_img = request.user.publicuser.profile_img
                 else:
                     create_form.instance.author_img = ''
 

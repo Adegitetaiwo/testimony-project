@@ -200,7 +200,7 @@
                         </div>
 
                         <hr class="mt-3 borderline">
-                        {% if request.user.publicuser.profile_img == '' %}
+                        {% if not request.user.publicuser.profile_img %}
                         <div>
                             <p class="alert alert-warning">
                                 You are seeing this alert message because you have not 
