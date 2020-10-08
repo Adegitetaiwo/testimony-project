@@ -5,7 +5,8 @@ from cloudinary.models import CloudinaryField
 
 class publicUser(models.Model):
     user = models.OneToOneField(User, verbose_name="", null=True, on_delete=models.CASCADE)
-    profile_img = models.ImageField(upload_to='images', height_field=None, width_field=None, max_length=None)
+    # profile_img = models.ImageField(upload_to='images', height_field=None, width_field=None, max_length=None)
+    profile_img = CloudinaryField('image')
     username = models.CharField(max_length=150, null=True, blank=True)
     gender = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=150, null=True, blank=True)
