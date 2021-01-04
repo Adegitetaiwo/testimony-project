@@ -21,8 +21,8 @@ def whatsapp_notification(request_ob, first_name, fail_silently=False):
         if fail_silently == False:
             raise e
         # RequestAborted("Something went wrong when tring to make the request. \n Error: {e}")
-        else:
-            send_mail('AN ERROR OCCURED !', f'{e.__context__}',
+        else:e.
+        send_mail('AN ERROR OCCURED !',f' error -> {e.message}',
                       'apostolictestimony@gmail.com', ['apostolictestimony@gmail.com'], fail_silently=True)
 
 
