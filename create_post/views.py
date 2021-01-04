@@ -22,6 +22,10 @@ def whatsapp_notification(request_ob, first_name, fail_silently=False):
             raise e
         # RequestAborted("Something went wrong when tring to make the request. \n Error: {e}")
         else:
+            send_mail('AN ERROR OCCURED !', f'{e.__context__}',
+                      'apostolictestimony@gmail.com', ['apostolictestimony@gmail.com'], fail_silently=True)
+
+
             pass
 
 @login_required
@@ -50,7 +54,7 @@ def create_post(request):
                 send_mail('New Testimony Submit from Apostolictestimony', 'Hello Admin!, someone has just submitted a testimony, please check your dashboard',
                           'apostolictestimony@gmail.com', ['apostolictestimony@gmail.com'], fail_silently=True)
                 
-                whatsapp_notification(requests, create_form.instance.author)
+                whatsapp_notification(requests, create_form.instance.author, fail_silently=True)
                 return HttpResponseRedirect(request.path_info)
             else:
                 messages.error(
