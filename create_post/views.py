@@ -6,7 +6,7 @@ from account.views import User
 from django.contrib import messages
 from account.models import publicUser
 from django.shortcuts import render, get_object_or_404
-from django.core.exceptions import  PermissionDenied
+from django.core.exceptions import  PermissionDenied, RequestAborted
 from account.forms import updateProfile
 from django.core.mail import BadHeaderError, send_mail
 
@@ -19,7 +19,7 @@ def whatsapp_notification(request_ob, first_name, fail_silently=False):
         request_ob.get(url)
     except Exception as e:
         if fail_silently == False:
-            raise HttpResponseBadRequest
+            raise RequestAborted
         else:
             pass
 
