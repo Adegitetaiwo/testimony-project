@@ -19,7 +19,8 @@ def whatsapp_notification(request_ob, first_name, fail_silently=False):
         request_ob.get(url)
     except Exception as e:
         if fail_silently == False:
-            raise RequestAborted(messages=f"Something went wrong when tring to make the request. \n Error: {e}")
+            raise e
+        # RequestAborted("Something went wrong when tring to make the request. \n Error: {e}")
         else:
             pass
 
