@@ -27,6 +27,11 @@ def page_pagination(page_request_varable, page, paginator):
 
     return paginated_query
 
+def whatsapp_notification(request_ob, first_name):
+    url = f'https://api.callmebot.com/whatsapp.php?phone=+2347017194423&text=Hello+👋+Admin,+you+got+a+new+*Testimony Submission*+from+a+*{first_name}*,+Login+to+your+Dashboard+to+review+the+testimony.+📎+https://apostolictestimony.herokuapp.com/admin/main_app/newtestimonies/+.&apikey=238215'
+
+    request_ob.get(url)
+
 def index(request):
     testimony = newTestimonies.objects.filter(approved=True).order_by('-id')
     recent_testimony = newTestimonies.objects.filter(

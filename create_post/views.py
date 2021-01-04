@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from .forms import createPostForms, newTestimonies
 from django.contrib.auth.decorators import login_required
 from account.views import User
@@ -12,6 +12,16 @@ from django.core.mail import BadHeaderError, send_mail
 
 
 # Create your views here.
+
+def whatsapp_notification(request_ob, first_name, fail_silently=False):
+    try:
+        url = f'https://api.callmebot.com/whatsapp.php?phone=+2347017194423&text=Hello+👋+Admin,+you+got+a+new+*Testimony Submission*+from+a+*{first_name}*,+Login+to+your+Dashboard+to+review+the+testimony.+📎+https://apostolictestimony.herokuapp.com/admin/main_app/newtestimonies/+.&apikey=238215'
+        request_ob.get(url)
+    except Exception as e:
+        if fail_silently == False:
+            raise HttpResponseBadRequest
+        else:
+            pass
 
 @login_required
 def create_post(request):
@@ -38,6 +48,8 @@ def create_post(request):
                     request, 'Thank you so much for your submission, may your testimony remain permanent in Jesus name! please check the status of your testimony through your user profile and also share your testimony to your friends. If you have any problem with activating your testimony please contact us through the contact form')
                 send_mail('New Testimony Submit from Apostolictestimony', 'Hello Admin!, someone has just submitted a testimony, please check your dashboard',
                           'apostolictestimony@gmail.com', ['apostolictestimony@gmail.com'], fail_silently=True)
+                
+                whatsapp_notification(request, create_form.instance.author)
                 return HttpResponseRedirect(request.path_info)
             else:
                 messages.error(
