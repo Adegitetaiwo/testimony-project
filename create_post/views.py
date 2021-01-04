@@ -15,7 +15,7 @@ import requests
 
 def whatsapp_notification(request_ob, first_name, fail_silently=False):
     try:
-        url = f'https:api.callmebot.com/whatsapp.php?phone=+2347017194423&text=Hello+👋+Admin,+you+got+a+new+*Testimony Submission*+from+*{first_name}*,+Login+to+your+Dashboard+to+review+the+testimony.+📎+https://apostolictestimony.herokuapp.com/admin/main_app/newtestimonies/+.&apikey=238215'
+        url = f'https://api.callmebot.com/whatsapp.php?phone=+2347017194423&text=Hello+👋+Admin,+you+got+a+new+*Testimony Submission*+from+*{first_name}*,+Login+to+your+Dashboard+to+review+the+testimony.+📎+https://apostolictestimony.herokuapp.com/admin/main_app/newtestimonies/+.&apikey=238215'
         request_ob.get(url)
     except Exception as e:
         if fail_silently == False:
