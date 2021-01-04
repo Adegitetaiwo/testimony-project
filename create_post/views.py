@@ -9,7 +9,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.exceptions import  PermissionDenied, RequestAborted
 from account.forms import updateProfile
 from django.core.mail import BadHeaderError, send_mail
-
+import requests
 
 # Create your views here.
 
@@ -50,7 +50,7 @@ def create_post(request):
                 send_mail('New Testimony Submit from Apostolictestimony', 'Hello Admin!, someone has just submitted a testimony, please check your dashboard',
                           'apostolictestimony@gmail.com', ['apostolictestimony@gmail.com'], fail_silently=True)
                 
-                whatsapp_notification(request, create_form.instance.author)
+                whatsapp_notification(requests, create_form.instance.author)
                 return HttpResponseRedirect(request.path_info)
             else:
                 messages.error(

@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+
 # from urllib import quote_plus
 # Create your views here.
 
