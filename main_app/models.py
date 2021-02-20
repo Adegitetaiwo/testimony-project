@@ -21,7 +21,7 @@ class newTestimonies(models.Model):
     slug = models.SlugField(default="", editable=False)
     category = models.CharField(max_length=150, choices=Choise)
     body = RichTextField()
-    author = models.CharField(max_length=50)
+    author = models.CharField(max_length=250)
     author_img = models.CharField(max_length=500, null=True, blank=True)
     email = models.EmailField(max_length=254)
     approved = models.BooleanField(default=False, blank=True, null=True)
