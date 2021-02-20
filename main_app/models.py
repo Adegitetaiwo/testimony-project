@@ -17,7 +17,7 @@ Choise = (
 )
 class newTestimonies(models.Model):
     userId = models.CharField(max_length=250, editable=False)
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=255)
     slug = models.SlugField(default="", editable=False)
     category = models.CharField(max_length=150, choices=Choise)
     body = RichTextField()
