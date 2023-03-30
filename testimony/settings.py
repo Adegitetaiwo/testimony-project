@@ -14,7 +14,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 import os
 from django.contrib import messages
-import django_heroku
+
 #from boto.s3.connection import S3Connection
 import cloudinary
 import cloudinary.uploader
@@ -42,7 +42,7 @@ ADMINS = [
     ('Adegite Taiwo', 'adegitetaiwo24@gmail.com'),
 ]
 
-ALLOWED_HOSTS = ['apostolictestimony']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -54,8 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django',  # django social login
     'cloudinary', # cloudinary
+    'tinymce',
     'ckeditor',
     'sentry_sdk',
     'error_handling', #error handling
@@ -68,6 +68,7 @@ INSTALLED_APPS = [
 ]
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -129,33 +130,6 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-# TINYMCE_DEFAULT_CONFIG = {
-#     'height': 360,
-#     'cleanup_on_startup': True,
-#     'custom_undo_redo_levels': 20,
-#     'selector': 'textarea',
-#     'theme': 'modern',
-#     'plugins': '''
-#             textcolor save link image media preview codesample contextmenu
-#             table code lists fullscreen  insertdatetime  nonbreaking
-#             contextmenu directionality searchreplace wordcount visualblocks
-#             visualchars code fullscreen autolink lists  charmap print  hr
-#             anchor pagebreak
-#             ''',
-#     'toolbar1': '''
-#             fullscreen preview bold italic underline | fontselect,
-#             fontsizeselect  | forecolor backcolor | alignleft alignright |
-#             aligncenter alignjustify | indent outdent | bullist numlist table |
-#             | link image media | codesample |
-#             ''',
-#     'toolbar2': '''
-#             visualblocks visualchars |
-#             charmap hr pagebreak nonbreaking anchor |  code |
-#             ''',
-#     'contextmenu': 'formats | link image',
-#     'menubar': True,
-#     'statusbar': True,
-# }
 
 #django-hitcount settings
 # default value
@@ -170,7 +144,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',  # django social login
 
 ]
 
@@ -188,12 +161,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'social_django.context_processors.backends',  # <-- django social authentication
-                'social_django.context_processors.login_redirect',  # <-- django social authentication
             ],
         },
     },
 ]
+
+
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -203,12 +176,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.github.GithubOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
 
 WSGI_APPLICATION = 'testimony.wsgi.application'
 
@@ -219,15 +186,13 @@ WSGI_APPLICATION = 'testimony.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testimony',
+        'NAME': 'itestifychrist',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': '',
-        'POST': '',
-
+        'PASSWORD': 'ADE15112000gite ++@',
+        'PORT': '3305',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -336,9 +301,34 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'uploads')
 
-# # Activate Django-Heroku.
-django_heroku.settings(locals())
+TINYMCE_JS_URL = os.path.join(STATIC_URL, "path/to/tiny_mce/tiny_mce.js")
+TINYMCE_DEFAULT_CONFIG = {
+
+   'height': 860,
+   'plugins': '''
+   textcolor save link image media preview codesample contextmenu
+   table code lists fullscreen insertdatetime nonbreaking
+   contextmenu directionality searchreplace wordcount visualblocks
+   visualchars code fullscreen autolink lists charmap print hr
+   anchor pagebreak
+   ''',
+   'toolbar1': '''
+   fullscreen preview bold italic underline | fontselect,
+   fontsizeselect | forecolor backcolor | alignleft alignright |
+   aligncenter alignjustify | indent outdent | bullist numlist table |
+   | link image media | codesample |
+   ''',
+   'toolbar2': '''
+   visualblocks visualchars |
+   charmap hr pagebreak nonbreaking anchor | code |
+   ''',
+   'contextmenu': 'formats | link image',
+   'menubar': True,
+   'statusbar': True,
+   }
+
 
 cloudinary.config(
     cloud_name = os.environ['cloud_name'],

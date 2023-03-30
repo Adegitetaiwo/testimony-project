@@ -2,6 +2,9 @@ from django.db import models
 from django.utils.text import slugify
 from account.models import publicUser
 from ckeditor.fields import RichTextField
+
+from tinymce import models as tinymce_models
+
 # Create your models here.
 
 Choise = (
@@ -11,10 +14,8 @@ Choise = (
     ('finance', 'Finance'),
     ('protection', 'Protection'),
     ('others', 'Others')
-
-
-
 )
+
 class newTestimonies(models.Model):
     userId = models.CharField(max_length=250, editable=False)
     title = models.CharField(max_length=255)
@@ -43,7 +44,7 @@ class newTestimonies(models.Model):
 
 class askedQuestion(models.Model):
     question = models.CharField(max_length=150)
-    answer = RichTextField()
+    answer = tinymce_models.HTMLField()
 
     def __str__(self):
         return '{}'.format(self.question)
@@ -54,7 +55,7 @@ class askedQuestion(models.Model):
 
 class bibleQuote(models.Model):
     verse = models.CharField(max_length=150)
-    quote = RichTextField()
+    quote = tinymce_models.HTMLField()
 
     def __str__(self):
         return '{}'.format(self.verse)

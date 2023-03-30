@@ -1,7 +1,7 @@
 from django import forms
 from main_app.models import newTestimonies
+from tinymce.widgets import TinyMCE
 from ckeditor.widgets import CKEditorWidget
-
 
 
 CHOICES = (
@@ -18,8 +18,7 @@ class createPostForms(forms.ModelForm):
     title = forms.CharField(max_length=260, required=True, widget=(forms.TextInput(attrs={'id':"fname", 'class':"form-control", 'placeholder':"Title : something to describe your Testimony"})))
     category = forms.ChoiceField(choices=CHOICES, required=False)
     #to be continue
-    body = forms.CharField(required=False, widget=CKEditorWidget(attrs={'id': 'ckeditor', 'cols': "80", 'rows': "50", 'class': "form-control",
-                                                                 'placeholder': "Full narration of your testimony"}))
+    body = forms.CharField(widget=CKEditorWidget(attrs={'cols': '80', 'rows': '30'}))
     author =forms.CharField(max_length= 200, required=False)
     author_img = forms.ImageField(required=False)
     email = forms.CharField(max_length=300, required=False, widget=(forms.TextInput(attrs={'type':"email", 'id':"email", 'class':"form-control", 'placeholder':"an email to track your testimony status"})))

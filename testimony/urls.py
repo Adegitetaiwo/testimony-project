@@ -24,7 +24,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('oauth/', include('social_django.urls', namespace='social')),  # <-- django social authentication
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('main_app.urls')), 
     path('', include('subscribe.urls')),
     path('', include('account.urls')),
@@ -34,6 +34,7 @@ urlpatterns = [
 
     #error handing
     path('', include('error_handling.urls')),
+    path('tinymce/', include('tinymce.urls')),
 
 
 

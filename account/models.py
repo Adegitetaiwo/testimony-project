@@ -16,8 +16,10 @@ class publicUser(models.Model):
 
 class totalRegisteredUser(models.Model):
     CurrentNumber = models.PositiveIntegerField(verbose_name="Current Registered Number")
+
     def __str__(self):
         return self.CurrentNumber
+        
     class Meta:
         verbose_name_plural = 'Total Registered User'
-    
+
