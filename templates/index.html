@@ -67,12 +67,11 @@
                 <li><a href="{% url 'about' %}"><span>About</span></a></li>
                 <li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
                 <li><a href="{% url 'create_post' %}"><span>Add testimony +</span></a></li>
-                <li class="has-children" >
-                  <a >
+                <li class="has-children">
+                  <a>
                     <span><img {% if request.user.publicuser.profile_img %} src="{{request.user.publicuser.profile_img.url}}" {% else %}
-                                src="{% static 'images/avatar.png' %}"{% endif %}
-                               alt="Image" 
-                              style="width: 50px;border: 2px solid #7971ea; border-radius: 50%; height: 50px;"></span></a>
+                        src="{% static 'images/avatar.png' %}" {% endif %} alt="Image"
+                        style="width: 50px;border: 2px solid #7971ea; border-radius: 50%;height: 50px;"></span></a>
                   <ul class="dropdown">
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'dashboad' %}">User Profile</a></li>
